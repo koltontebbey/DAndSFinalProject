@@ -36,10 +36,11 @@ CREATE TABLE Certification(
 )
 
 -- 4. User table
+-- PW to be hashed in SHA256
 CREATE TABLE Users(
   user_identifier varchar(7) NOT NULL,
   email varchar(30) NOT NULL,
-  password varchar(30) NOT NULL,
+  password char(64) NOT NULL,
   constraint user_pk primary key (user_identifier),
   constraint email_valid2 check (email LIKE '%@%.%' AND email NOT LIKE '@%' AND email NOT LIKE '%@%@%')
 )
