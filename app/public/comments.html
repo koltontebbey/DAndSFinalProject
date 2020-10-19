@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="icon" href="favicon.ico">
+    <title>Big Brain, Big Books</title>
+  </head>
+
+  <!-- Navigation bar -->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="index.html">
+      <!-- image source: https://www.flaticon.com/free-icon/book_1231138?term=book&page=1&position=13 -->
+      <img id="nav-logo" src="img/book_icon.png">
+      Big Brain
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.html">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="table.html">Table</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="comments.html">Comments<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <body>
+
+    <div class="container" id="commentsPage">
+      <h1 class="item-label">Big Comments Bigger Brain </h1>
+      <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+        <table id="commentTable" class="table table-bordered table-hover table-sm">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">comments</th>
+            </tr>
+          </thead>
+          <tbody id="commentTableBody">
+            <tr v-for="cmt in commentList">
+              <td>{{cmt.id}}</td>
+              <td>{{cmt.commentText}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <br>
+      <form method="GET" id="clearForm" v-on:submit.prevent="clearTable">
+        <button type="submit" class="btn btn-primary" id="clearButton">Clear Table</button>
+      </form>
+
+      <h1 class="item-label"> Submit your comment here:</h1>
+      <form method="POST" id="newCommentForm" v-on:submit.prevent="postComment">
+        <input class="form-control input-lg" type="text" id="comment" placeholder="Small brain" v-model="usrComment"><br>
+        <button type="submit" class="btn btn-primary" id="submitNewComment">Submit</button>
+      </form>
+
+    </div>
+
+    <br>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/comments.app.js"></script>
+
+  </body>
+
+  <div class="navbar fixed-bottom foot">
+    <div class="container">
+      <p class="navbar-text">Just a small book in a big brain world. <br>
+        Logo from: <a href="https://www.flaticon.com/free-icon/book_1231138?term=book&page=1&position=13">Flaticon.com</a>
+      </p>
+    </div>
+  </div>
+
+
+</html>

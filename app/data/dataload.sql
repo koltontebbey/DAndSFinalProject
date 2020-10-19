@@ -3,9 +3,6 @@
 
 USE OCFR;
 
-DECLARE { @LOCAL_VARIABLE VARCHAR(500) [ = 'C:\\Users\\Teng Siang\\Documents\\GitHub\\DAndSFinalProject\\app\\data\\sample_data\\' ] }
-
-
 -- States
 LOAD DATA LOCAL INFILE 'C:\\Users\\Teng Siang\\Documents\\GitHub\\DAndSFinalProject\\app\\data\\sample_data\\states.csv'
 INTO TABLE States

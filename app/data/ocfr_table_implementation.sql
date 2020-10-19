@@ -61,7 +61,7 @@ CREATE TABLE Person(
   person_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   first_name varchar(25) NOT NULL,
   last_name varchar(25) NOT NULL,
-  radio_number varchar(10) NOT NULL,
+  radio_number int NOT NULL,
   rank_id int NOT NULL,
   is_active boolean NOT NULL,
   start_date date NOT NULL,
