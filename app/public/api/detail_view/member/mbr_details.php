@@ -20,7 +20,7 @@ if (isset($_GET['mbrId'])) {
               CASE
               	WHEN delta < 0 THEN \'Expired\'
               	ELSE \'Valid\'
-              END AS \'Expired?\'
+              END AS \'expired\'
               FROM(
               	(SELECT cert_name, date_obtained, exp_date, DATEDIFF(exp_date, CURDATE()) AS delta
               	FROM(
@@ -32,6 +32,7 @@ if (isset($_GET['mbrId'])) {
               		)) AS temp2
               	)) AS temp3
               )
+              ORDER BY cert_name
     ';
     $stmt2 = $db->prepare(stripslashes($sql2));
     $stmt2->execute($vars);

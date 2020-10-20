@@ -7,7 +7,8 @@ $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
 $sql = 'SELECT cert_id, cert_name
-FROM Certification';
+FROM Certification
+ORDER BY cert_name';
 
 $stmt = $db->prepare($sql);
 $stmt->execute();

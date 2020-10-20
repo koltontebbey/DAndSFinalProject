@@ -7,7 +7,8 @@ $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
 $sql = 'SELECT Person.person_id, Person.first_name, Person.last_name
-FROM Person';
+FROM Person
+ORDER BY last_name';
 
 $stmt = $db->prepare($sql);
 $stmt->execute();

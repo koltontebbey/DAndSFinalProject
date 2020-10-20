@@ -20,18 +20,19 @@ if (isset($_GET['certId'])) {
   CASE
   	WHEN delta < 0 THEN \'Expired\'
   	ELSE \'Valid\'
-  END AS \'Expired?\'
+  END AS \'Expired\'
   FROM(
   	(SELECT person_id, first_name, last_name, date_obtained, exp_date, DATEDIFF(exp_date, CURDATE()) AS delta
   	FROM(
   		(SELECT person_id, first_name, last_name, date_obtained, STR_TO_DATE(CONCAT(exp_yr,\'-\',LPAD(MONTH(date_obtained), 2 ,\'00\'),\'-\',LPAD(DAY(date_obtained), 2 ,\'00\')), \'%Y-%m-%d\') AS exp_date
   		FROM(
-  			(SELECT Person.person_id,first_name, Last_name, date_obtained, YEAR(Cert_assoc.date_obtained) + Certification.default_exp AS exp_yr
+  			(SELECT Person.person_id,first_name, last_name, date_obtained, YEAR(Cert_assoc.date_obtained) + Certification.default_exp AS exp_yr
   			FROM Person, Cert_assoc, Certification
   			WHERE Person.person_id = Cert_assoc.person_id AND Certification.cert_id = Cert_assoc.cert_id AND Certification.cert_id = ?) AS temp
   		)) AS temp2
   	)) AS temp3
   )
+  ORDER BY last_name
   ';
   $stmt2 = $db->prepare(stripslashes($sql2));
   $stmt2->execute($vars);

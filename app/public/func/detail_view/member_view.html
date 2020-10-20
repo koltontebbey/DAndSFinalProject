@@ -42,37 +42,70 @@
     </div>
   </nav>
 
+<!-- Body -->
+
   <body>
 
-    <div class="container" id="commentsPage">
-      <h1 class="item-label">Big Comments Bigger Brain </h1>
+    <div class="container" id="mbrDetails">
+      <h1 class="item-label">Member Record</h1><br>
+      <h2> Choose a member:</h2>
+      <select v-model='mbrSelected' v-on:change="fetchPageDetails">
+        <option v-for="mbr in mbrList" v-bind:value="{id: mbr.person_id}">
+          {{ mbr.last_name }}, {{mbr.first_name}}
+        </option>
+      </select>
+      <br>
+      <br>
+      <h2> Member Details: </h2>
+      Last Name: {{mbrDetails.last_name}}
+      <br>
+      First Name: {{mbrDetails.first_name}}
+      <br>
+      Rank: {{mbrDetails.rank_name}}
+      <br>
+      Active: {{mbrDetails.is_active}}
+      <br>
+      Email: {{mbrDetails.contact_email}}
+      <br>
+      Home Phone: {{mbrDetails.home_phone}}
+      <br>
+      Mobile Phone: {{mbrDetails.mobile_phone}}
+      <br>
+      Work Phone: {{mbrDetails.work_phone}}
+      <br>
+      Start Date: {{mbrDetails.start_date}}
+      <br>
+      Street Address: {{mbrDetails.street_address}}
+      <br>
+      City: {{mbrDetails.city}}
+      <br>
+      Zip: {{mbrDetails.zip}}
+      <br>
+      <br>
+      <h2>Certifications:</h2>
       <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-        <table id="commentTable" class="table table-bordered table-hover table-sm">
+        <table id="certTable" class="table table-bordered table-hover table-sm">
           <thead>
+
             <tr>
-              <th scope="col">id</th>
-              <th scope="col">comments</th>
+              <th scope="col">Certification Name</th>
+              <th scope="col">Date Obtained</th>
+              <th scope="col">Expiry Date</th>
+              <th scope="col">Expired?</th>
             </tr>
           </thead>
-          <tbody id="commentTableBody">
-            <tr v-for="cmt in commentList">
-              <td>{{cmt.id}}</td>
-              <td>{{cmt.commentText}}</td>
+          <tbody id="mbrTableBody">
+            <tr v-for="c in mbrCerts">
+              <td>{{c.cert_name}}</td>
+              <td>{{c.date_obtained}}</td>
+              <td>{{c.exp_date}}</td>
+              <td>{{c.expired}}</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <br>
-      <form method="GET" id="clearForm" v-on:submit.prevent="clearTable">
-        <button type="submit" class="btn btn-primary" id="clearButton">Clear Table</button>
-      </form>
-
-      <h1 class="item-label"> Submit your comment here:</h1>
-      <form method="POST" id="newCommentForm" v-on:submit.prevent="postComment">
-        <input class="form-control input-lg" type="text" id="comment" placeholder="Small brain" v-model="usrComment"><br>
-        <button type="submit" class="btn btn-primary" id="submitNewComment">Submit</button>
-      </form>
 
     </div>
 
@@ -84,7 +117,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="js/comments.app.js"></script>
+    <script src="/js/detail_view/mbr_detail.app.js"></script>
 
   </body>
 
