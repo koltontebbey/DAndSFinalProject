@@ -81,13 +81,11 @@ var app = new Vue({
       fetch('/api/data_entry/add_mbr_cert.php', requestOptions)
       .then(response => response.json())
       .then(data => {
-        // TODO FIX REPULL
-        if (data === ''){
+        if (Object.keys(data).length === 0){
           this.fetchMbrDetails();
-        };
+        }
       })
       ;
-
     }
   }
 })
