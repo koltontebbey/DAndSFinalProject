@@ -8,24 +8,15 @@ var app = new Vue({
   },
 
   created() {
-    this.fetchMbrList();
+    this.fetchPageDetails();
   },
 
   methods: {
-    fetchMbrList: function() {
-      const requestOptions = {
-        method: 'GET'
-      }
-      fetch('/api/detail_view/member/member_helper.php', requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        this.mbrList = data;
-      });
-    },
     fetchPageDetails: function(){
-      var params = [['mbrId', this.mbrSelected['id']]];
-      var queryStr = new URLSearchParams(params).toString();
-     fetch('/api/detail_view/member/mbr_details.php?'.concat(queryStr))
+      const urlParam = new URLSearchParams(window.location.search);
+      this.mbrSelected = urlParam.get('id');
+      var apiPath = '/api/views/mbr_detail.php?mbrId='.concat(this.mbrSelected);
+     fetch(apiPath)
      .then(response => response.json())
      .then(data => {
        this.mbrDetails = data['mbr_details'][0];

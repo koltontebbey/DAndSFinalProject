@@ -27,7 +27,7 @@ if (isset($_GET['mbrId'])) {
     SQL statement: Gets member's certification
   */
   $sql2 = 'SELECT cert_name, date_obtained, exp_date ,
-            CASE WHEN delta < 0 THEN \'Expired\' ELSE \'Valid\' END AS \'Status\'
+            CASE WHEN delta < 0 THEN \'Expired\' ELSE \'Valid\' END AS \'status\'
                 FROM(
                 	SELECT cert_name, date_obtained, exp_date,
                     DATEDIFF(exp_date, CURDATE()) AS delta

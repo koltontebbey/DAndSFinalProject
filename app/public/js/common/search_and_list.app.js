@@ -9,7 +9,8 @@ var app = new Vue({
     searchResults: [],
     tableToggle: false,
     noResultsText: false,
-    selection: ''
+    selection: '',
+    selectionId: ''
   },
   // calls the fetch function when created to pull data
   created() {
@@ -95,15 +96,20 @@ var app = new Vue({
 
     // handles click events on search table
     tableOnClickHandler: function(i){
+      this.selection = i;
       // mbr
       if(this.toggleMbrCert){
-        this.selection = i.person_id;
+        this.selectionId = this.selection.person_id;
       }
       // cert
       else{
-        this.selection = i.cert_id;
+        this.selectionId = this.selection.cert_id;
       }
+      this.goNext();
+    },
 
+    setId: function(){
+      this.selectionId = this.selection['id'];
       this.goNext();
     },
 
@@ -113,12 +119,12 @@ var app = new Vue({
       var path = '';
       // mbr
       if(this.toggleMbrCert){
-        path = '/func/views/mbr_detail.html?id='.concat(this.selection);
+        path = '/func/views/mbr_detail.html?id='.concat(this.selectionId);
         path = host.concat(path);
       }
       // cert
       else{
-        path = '/func/views/cert_detail.html?id='.concat(this.selection);
+        path = '/func/views/cert_detail.html?id='.concat(this.selectionId);
         path = host.concat(path);
       }
       window.location.href = path;

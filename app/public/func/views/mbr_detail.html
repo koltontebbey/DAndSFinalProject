@@ -49,13 +49,6 @@
 
     <div class="container" id="mbrDetails">
       <h1 class="item-label">Member Record</h1><br>
-      <h2> Choose a member:</h2>
-      <select v-model='mbrSelected' v-on:change="fetchPageDetails">
-        <option v-for="mbr in mbrList" v-bind:value="{id: mbr.person_id}">
-          {{ mbr.last_name }}, {{mbr.first_name}}
-        </option>
-      </select>
-      <br>
       <br>
       <h2> Member Details: </h2>
       Last Name: {{mbrDetails.last_name}}
@@ -92,7 +85,7 @@
               <th scope="col">Certification Name</th>
               <th scope="col">Date Obtained</th>
               <th scope="col">Expiry Date</th>
-              <th scope="col">Expired?</th>
+              <th scope="col">Cert. Status</th>
             </tr>
           </thead>
           <tbody id="mbrTableBody">
@@ -100,7 +93,7 @@
               <td>{{c.cert_name}}</td>
               <td>{{c.date_obtained}}</td>
               <td>{{c.exp_date}}</td>
-              <td>{{c.expired}}</td>
+              <td>{{c.status}}</td>
             </tr>
           </tbody>
         </table>
@@ -134,6 +127,7 @@
     <script src="assets/mail/contact_me.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    <script src="/js/views/mbr_detail.app.js"></script>
   </body>
 
 </html>

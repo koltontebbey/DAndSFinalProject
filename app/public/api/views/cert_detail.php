@@ -31,7 +31,7 @@ if (isset($_GET['certId'])) {
             CASE
               WHEN delta < 0 THEN \'Expired\'
               ELSE \'Valid\'
-              END AS \'Status\'
+              END AS \'status\'
             FROM(
               SELECT person_id, first_name, last_name, date_obtained, exp_date,
                 DATEDIFF(exp_date, CURDATE()) AS delta
@@ -50,7 +50,7 @@ if (isset($_GET['certId'])) {
                                   \'%Y-%m-%d\') AS exp_date_calc
                                FROM(
             				                 (
-                                       SELECT Person.person_id,first_name, Last_name,
+                                       SELECT Person.person_id,first_name, last_name,
                                        date_obtained, exp_date AS exp_date_ovr,
                                        YEAR(Cert_assoc.date_obtained) + Certification.default_exp AS exp_yr
                                        FROM Person, Cert_assoc, Certification

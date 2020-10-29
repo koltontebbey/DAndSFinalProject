@@ -8,24 +8,15 @@ var app = new Vue({
   },
 
   created() {
-    this.fetchCertList();
+    this.fetchPageDetails();
   },
 
   methods: {
-    fetchCertList: function() {
-      const requestOptions = {
-        method: 'GET'
-      }
-      fetch('/api/detail_view/cert/cert_helper.php', requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        this.certList = data;
-      });
-    },
     fetchPageDetails: function(){
-      var params = [['certId', this.certSelected['id']]];
-      var queryStr = new URLSearchParams(params).toString();
-     fetch('/api/detail_view/cert/cert.php?'.concat(queryStr))
+      const urlParam = new URLSearchParams(window.location.search);
+      this.certSelected = urlParam.get('id');
+      var apiPath = '/api/views/cert_detail.php?certId='.concat(this.certSelected);
+     fetch(apiPath)
      .then(response => response.json())
      .then(data => {
        this.certDetails = data['cert_details'][0];
