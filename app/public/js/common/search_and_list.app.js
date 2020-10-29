@@ -109,11 +109,20 @@ var app = new Vue({
 
     // redirects to the right view
     goNext: function(){
-      const hostName = window.location.host;
-
-      console.log(hostName);
+      const host = 'http://'.concat(window.location.host);
+      var path = '';
+      // mbr
+      if(this.toggleMbrCert){
+        path = '/func/views/mbr_detail.html?id='.concat(this.selection);
+        path = host.concat(path);
+      }
+      // cert
+      else{
+        path = '/func/views/cert_detail.html?id='.concat(this.selection);
+        path = host.concat(path);
+      }
+      window.location.href = path;
     }
-
 
   }
 })
