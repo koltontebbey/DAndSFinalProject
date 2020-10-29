@@ -87,6 +87,7 @@ CREATE TABLE Cert_assoc(
   person_id int NOT NULL,
   cert_id int NOT NULL,
   date_obtained date NOT NULL,
+  exp_date date,
   primary key (person_id, cert_id),
   foreign key (person_id) references Person(person_id),
   foreign key (cert_id) references Certification(cert_id)
