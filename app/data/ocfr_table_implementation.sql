@@ -65,6 +65,7 @@ CREATE TABLE Person(
   radio_number int NOT NULL,
   rank_id int NOT NULL,
   is_active boolean NOT NULL,
+  date_of_birth date NOT NULL,
   start_date date NOT NULL,
   street_address varchar(30) NOT NULL,
   city varchar(25) NOT NULL,

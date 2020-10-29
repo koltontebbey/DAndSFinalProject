@@ -8,9 +8,10 @@ $db = DbConnection::getConnection();
 /*
   SQL Statement: Gets a list of members order by last name
 */
-$sql = 'SELECT Person.person_id, Person.first_name, Person.last_name
-FROM Person
-ORDER BY last_name';
+$sql = 'SELECT Person.person_id,
+        CONCAT(Person.last_name, ", ", Person.first_name) AS full_name
+        FROM Person
+        ORDER BY last_name';
 
 $stmt = $db->prepare($sql);
 $stmt->execute();

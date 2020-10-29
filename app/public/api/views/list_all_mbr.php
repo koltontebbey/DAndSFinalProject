@@ -6,7 +6,7 @@ require 'common.php';
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
-$sql = 'SELECT first_name, last_name, gender, is_active, radio_number, station_name,
+$sql = 'SELECT first_name, last_name, gender, date_of_birth, is_active, radio_number, station_name,
             Ranks.rank_id, Ranks.rank_name, contact_email, Person.street_address,
             Person.city, Person.state_abbr
             FROM Person, Ranks, Station_assoc, Station
