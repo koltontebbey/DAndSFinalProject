@@ -5,7 +5,9 @@ require 'common.php';
 // Get connection from helper
 $db = DbConnection::getConnection();
 
-// Step 2: Create & run the query
+/*
+  SQL Statement: Grabs list of members and their details
+*/
 $sql = 'SELECT first_name, last_name, gender, date_of_birth, is_active, radio_number, station_name,
             Ranks.rank_id, Ranks.rank_name, contact_email, Person.street_address,
             Person.city, Person.state_abbr
@@ -19,9 +21,10 @@ $stmt->execute();
 
 $mbrs = $stmt->fetchAll();
 
-// Step 3: Convert to JSON
 $json = json_encode($mbrs, JSON_PRETTY_PRINT);
 
-// Step 4: Output
+// 200 OK
+http_response_code(200);
 header('Content-Type: application/json');
+
 echo $json;

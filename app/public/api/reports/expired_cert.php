@@ -2,11 +2,15 @@
 
 require 'common.php';
 
-// Step 1: Get a datase connection from our helper class
+// Get connection from helper
 $db = DbConnection::getConnection();
 
-// Step 2: Create & run the query
-$querystr = 'SELECT Person.first_name, Person.last_name, Person.is_active, Certification.cert_name, assoc.exp_date, DATEDIFF(assoc.exp_date, CURDATE()) AS delta
+/*
+  SQL Statement: Query pulls people with expired certification
+*/
+$querystr = 'SELECT Person.first_name, Person.last_name, Person.is_active,
+						 Certification.cert_name, assoc.exp_date,
+						 DATEDIFF(assoc.exp_date, CURDATE()) AS delta
 							FROM(
 								(
 									SELECT person_id, cert_id,

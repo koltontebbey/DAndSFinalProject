@@ -2,10 +2,12 @@
 
 require 'common.php';
 
-// Step 1: Get a datase connection from our helper class
+// Get connection from helper
 $db = DbConnection::getConnection();
 
-// Step 2: Create & run the query
+/*
+  SQL Statement: Gets a list of certifications, default expiry and cert. agency.
+*/
 $sql = 'SELECT cert_name, default_exp, Agency.agency_name
 FROM Certification, Agency
 WHERE Certification.cert_agency_id = Agency.agency_id';

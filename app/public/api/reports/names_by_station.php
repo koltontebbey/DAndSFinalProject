@@ -9,7 +9,7 @@ $db = DbConnection::getConnection();
   SQL Statement: Gets list of station and people in them, lists details
 */
 $querystr = 'SELECT Station.station_name, Person.radio_number, Person.first_name,
-              Person.last_name, Ranks.rank_name, Person.contact_email
+              Person.last_name, Ranks.rank_name, Person.is_active, Person.contact_email
               FROM Person, Station, Station_assoc, Ranks
               WHERE Person.person_id = Station_assoc.person_id AND
                 Station_assoc.station_id = Station.station_id AND
