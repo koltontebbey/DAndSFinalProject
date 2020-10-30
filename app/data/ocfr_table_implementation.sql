@@ -32,10 +32,12 @@ CREATE TABLE Agency(
 CREATE TABLE Certification(
   cert_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   cert_name VARCHAR(100) NOT NULL,
-  cert_agency_id int NOT NULL,
+  cert_agency_id int,
   -- default_exp, default expiry of certification in months
   default_exp int NOT NULL,
-  foreign key (cert_agency_id) references Agency(agency_id)
+  foreign key (cert_agency_id) references Agency(agency_id) 
+  		ON DELETE SET NULL
+  		ON UPDATE CASCADE
 );
 
 -- 4. User table
@@ -61,9 +63,11 @@ CREATE TABLE Person(
   person_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   first_name varchar(25) NOT NULL,
   last_name varchar(25) NOT NULL,
+  gender VARCHAR(25) NOT NULL,
   radio_number int NOT NULL,
-  rank_id int NOT NULL,
+  rank_id int,
   is_active boolean NOT NULL,
+  date_of_birth date NOT NULL,
   start_date date NOT NULL,
   street_address varchar(30) NOT NULL,
   city varchar(25) NOT NULL,
@@ -74,7 +78,10 @@ CREATE TABLE Person(
   work_phone varchar(10) NOT NULL,
   mobile_phone varchar(10) NOT NULL,
   foreign key (state_abbr) references States(state_abbr),
-  foreign key (rank_id) references Ranks(rank_id),
+  foreign key (rank_id) references Ranks(rank_id)
+		ON DELETE SET NULL
+		ON UPDATE CASCADE,
+  constraint gender_valid check (gender in ('Male', 'Female', 'Other')),
   constraint email_valid3 check (contact_email LIKE '%@%.%' AND contact_email NOT LIKE '@%' AND contact_email NOT LIKE '%@%@%'),
   constraint chk_num_valid1 check (home_phone regexp '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
   constraint chk_num_valid2 check (work_phone regexp '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
@@ -89,8 +96,12 @@ CREATE TABLE Cert_assoc(
   date_obtained date NOT NULL,
   exp_date date,
   primary key (person_id, cert_id),
-  foreign key (person_id) references Person(person_id),
+  foreign key (person_id) references Person(person_id)   		
+  		ON DELETE CASCADE
+  		ON UPDATE CASCADE,
   foreign key (cert_id) references Certification(cert_id)
+  		ON DELETE CASCADE
+  		ON UPDATE CASCADE
 );
 
 
@@ -112,6 +123,10 @@ CREATE TABLE Station_assoc(
   person_id int NOT NULL,
   station_id int NOT NULL,
   primary key (person_id, station_id),
-  foreign key (person_id) references Person(person_id),
+  foreign key (person_id) references Person(person_id)
+  		ON DELETE CASCADE
+  		ON UPDATE CASCADE,
   foreign key (station_id) references Station(station_id)
+  		ON DELETE CASCADE
+  		ON UPDATE CASCADE
 );

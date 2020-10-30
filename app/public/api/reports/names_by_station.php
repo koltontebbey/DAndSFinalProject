@@ -2,23 +2,29 @@
 
 require 'common.php';
 
-// Step 1: Get a datase connection from our helper class
+// Get connection from helper
 $db = DbConnection::getConnection();
 
-// Step 2: Create & run the query
-$querystr = 'SELECT Station.station_name, Person.radio_number, Person.first_name, Person.last_name, Person.contact_email
-FROM Person, Station, Station_assoc
-WHERE Person.person_id = Station_assoc.person_id AND Station_assoc.station_id = Station.station_id
-ORDER BY station_name, radio_number';
+/*
+  SQL Statement: Gets list of station and people in them, lists details
+*/
+$querystr = 'SELECT Station.station_name, Person.radio_number, Person.first_name,
+              Person.last_name, Ranks.rank_name, Person.is_active, Person.contact_email
+              FROM Person, Station, Station_assoc, Ranks
+              WHERE Person.person_id = Station_assoc.person_id AND
+                Station_assoc.station_id = Station.station_id AND
+                Person.rank_id = Ranks.rank_id
+              ORDER BY station_name, radio_number';
 
 $stmt = $db->prepare($querystr);
 $stmt->execute();
 
-$comments = $stmt->fetchAll();
+$results = $stmt->fetchAll();
 
-// Step 3: Convert to JSON
-$json = json_encode($comments, JSON_PRETTY_PRINT);
+$json = json_encode($results, JSON_PRETTY_PRINT);
 
-// Step 4: Output
+// 200 OK
+http_response_code(200);
 header('Content-Type: application/json');
+
 echo $json;

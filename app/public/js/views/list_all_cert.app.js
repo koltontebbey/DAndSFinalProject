@@ -3,17 +3,18 @@ var app = new Vue({
   data: {
     certList: [],
   },
-
+  // calls the fetch function when created to pull data
   created() {
     this.fetchCerts();
   },
 
   methods: {
+    // pulls data from list_all_cert.php
     fetchCerts: function() {
       const requestOptions = {
         method: 'GET'
       }
-      fetch('/api/data_entry/list_certifications.php', requestOptions)
+      fetch('/api/views/list_all_cert.php', requestOptions)
       .then(response => response.json())
       .then(data => {
         this.certList = data;

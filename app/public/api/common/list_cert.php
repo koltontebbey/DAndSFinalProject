@@ -2,10 +2,12 @@
 
 require 'common.php';
 
-// Step 1: Get a datase connection from our helper class
+// Get connection from helper
 $db = DbConnection::getConnection();
 
-// Step 2: Create & run the query
+/*
+  SQL Statement: Gets a list of certifications ordered by name
+*/
 $sql = 'SELECT cert_id, cert_name
 FROM Certification
 ORDER BY cert_name';
@@ -13,11 +15,12 @@ ORDER BY cert_name';
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
-$certs = $stmt->fetchAll();
+$results = $stmt->fetchAll();
 
-// Step 3: Convert to JSON
-$json = json_encode($certs, JSON_PRETTY_PRINT);
+$json = json_encode($results, JSON_PRETTY_PRINT);
 
-// Step 4: Output
+// 200 OK
+http_response_code(200);
 header('Content-Type: application/json');
+
 echo $json;

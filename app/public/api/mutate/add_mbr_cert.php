@@ -2,7 +2,7 @@
 
 require 'common.php';
 
-// Step 1: Get a datase connection from our helper class
+// Get connection from helper
 $db = DbConnection::getConnection();
 
 // Check for inputs
@@ -19,5 +19,13 @@ if ($attempt) {
 
   $json = json_encode(json_decode ("{}"), JSON_PRETTY_PRINT);
 
+  // 200 OK
+  http_response_code(200);
+  header('Content-Type: application/json');
+  
   echo $json;
+}
+else{
+  // returns 400 bad request error if no param is entered.
+  http_response_code(400);
 }

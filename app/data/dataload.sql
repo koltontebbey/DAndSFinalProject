@@ -56,7 +56,7 @@ INTO TABLE Person
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES
-(first_name, last_name, radio_number, rank_id, is_active, start_date, street_address, city, state_abbr, zip, contact_email, home_phone, work_phone, mobile_phone)
+(first_name, last_name, gender, radio_number, rank_id, is_active, date_of_birth, start_date, street_address, city, state_abbr, zip, contact_email, home_phone, work_phone, mobile_phone)
 SET person_id = NULL
 ;
 
