@@ -42,11 +42,11 @@
       <br>
       <form method="POST" id="searchForm" v-on:submit.prevent="postSearch">
           <input class="form-control" type="text" id="searchBox" placeholder="Name" v-model="searchTerm">
-          <button type="submit" class="btn btn-primary" id="submitNewComment">Search</button>
+          <button type="submit" class="btn btn-primary">Search</button>
       </form>
       <br>
       <div v-if="noResultsText">
-        There is no results for the search term: {{searchTerm}}.
+        There is no results for the search term: {{searchTermStatic}}.
       </div>
       <div v-if="tableToggle">
         <div class="table-responsive" v-if="toggleMbrCert">

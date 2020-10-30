@@ -6,6 +6,7 @@ var app = new Vue({
     toggleMbrCert: '',
     mbrOrCert:'',
     searchTerm:'',
+    searchTermStatic:'',
     searchResults: [],
     tableToggle: false,
     noResultsText: false,
@@ -82,6 +83,7 @@ var app = new Vue({
         this.searchResults.splice(0, this.searchResults.length);
         // check for no results
         if(data.length === 0){
+          this.searchTermStatic = (' ' + this.searchTerm).slice(1);
           this.noResultsText = true;
         }
         else{
