@@ -76,29 +76,50 @@
       Zip: {{mbrDetails.zip}}
       <br>
       <br>
-      <h2>Certifications:</h2>
+      
+      <br>
+      <br>
+      <h2>Valid Certifications:</h2>
       <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-        <table id="certTable" class="table table-bordered table-hover table-sm">
+        <table class="table table-bordered table-hover table-sm">
           <thead>
-
             <tr>
               <th scope="col">Certification Name</th>
               <th scope="col">Date Obtained</th>
               <th scope="col">Expiry Date</th>
-              <th scope="col">Cert. Status</th>
             </tr>
           </thead>
-          <tbody id="mbrTableBody">
-            <tr v-for="c in mbrCerts">
+          <tbody>
+            <tr v-for="c in mbrValidCerts">
               <td>{{c.cert_name}}</td>
               <td>{{c.date_obtained}}</td>
               <td>{{c.exp_date}}</td>
-              <td>{{c.status}}</td>
             </tr>
           </tbody>
         </table>
       </div>
 
+      <div v-if="expiredViewToggle">
+        <h2>Expired Certifications:</h2>
+        <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+          <table class="table table-bordered table-hover table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Certification Name</th>
+                <th scope="col">Date Obtained</th>
+                <th scope="col">Expiry Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="c in mbrExpiredCerts">
+                <td>{{c.cert_name}}</td>
+                <td>{{c.date_obtained}}</td>
+                <td>{{c.exp_date}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <br>
 
     </div>

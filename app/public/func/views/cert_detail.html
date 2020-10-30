@@ -62,25 +62,46 @@
       Agency Phone Number: {{certDetails.phone_num}}
       <br>
       <br>
-      <h2>Members with this certification:</h2>
+
+      <h2>Members with this certification that is current:</h2>
       <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-        <table id="certTable" class="table table-bordered table-hover table-sm">
+        <table class="table table-bordered table-hover table-sm">
           <thead>
             <tr>
               <th scope="col">Last Name</th>
               <th scope="col">First Name</th>
               <th scope="col">Date Obtained</th>
               <th scope="col">Expiry Date</th>
-              <th scope="col">Cert. Status</th>
             </tr>
           </thead>
-          <tbody id="certTableBody">
-            <tr v-for="m in mbrsWithCert">
+          <tbody>
+            <tr v-for="m in mbrsWithCertValid">
               <td>{{m.last_name}}</td>
               <td>{{m.first_name}}</td>
               <td>{{m.date_obtained}}</td>
               <td>{{m.exp_date}}</td>
-              <td>{{m.status}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <h2>Members with this certification that is expired:</h2>
+      <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-bordered table-hover table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Last Name</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Date Obtained</th>
+              <th scope="col">Expiry Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="m in mbrsWithCertExp">
+              <td>{{m.last_name}}</td>
+              <td>{{m.first_name}}</td>
+              <td>{{m.date_obtained}}</td>
+              <td>{{m.exp_date}}</td>
             </tr>
           </tbody>
         </table>
