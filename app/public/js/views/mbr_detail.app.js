@@ -47,6 +47,34 @@ var app = new Vue({
          this.expiredViewToggle = true;
        }
      });
-    }
+   },
+   // function deletes the current certification in the view
+   deleteMbr: function(){
+     var mbrName = this.mbrDetails['first_name'].concat(" ", this.mbrDetails['last_name']);
+     var response = confirm("Are you sure you want to delete "
+                             .concat(mbrName, " from the system?"));
+     // on true call delete API
+     if(response){
+       var apiPath = '/api/mutate/delete_mbr.php';
+       var requestOptions = {
+         method: 'POST',
+         headers: {'Content-Type': 'application/json'},
+         body: JSON.stringify({'personId': this.mbrSelected})
+       };
+       fetch(apiPath, requestOptions)
+       .then(response => response.json())
+       .then(data =>{
+         var results = data;
+         if(results['status'] === 'ok'){
+           alert("The member "
+                 .concat(mbrName, " was deleted."));
+           // redirects back to mbr search
+           var path = 'http://'.concat(window.location.host,
+                     '/func/common/search_mbr_cert.html?type=mbr');
+           window.location.href = path;
+         }
+       })
+     }
+   }
   }
 })

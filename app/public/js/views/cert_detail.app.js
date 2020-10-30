@@ -48,6 +48,33 @@ var app = new Vue({
        }
 
      });
+   },
+    // function deletes the current certification in the view
+    deleteCert: function(){
+      var response = confirm("Are you sure you want to delete the "
+                              .concat(this.certDetails['cert_name'], " certification?"));
+      // on true call delete API
+      if(response){
+        var apiPath = '/api/mutate/delete_cert.php';
+        var requestOptions = {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({'certId': this.certSelected})
+        };
+        fetch(apiPath, requestOptions)
+        .then(response => response.json())
+        .then(data =>{
+          var results = data;
+          if(results['status'] === 'ok'){
+            alert("The certification "
+                  .concat(this.certDetails['cert_name'], " was deleted."));
+            // redirects back to cert search
+            var path = 'http://'.concat(window.location.host,
+                      '/func/common/search_mbr_cert.html?type=cert');
+            window.location.href = path;
+          }
+        })
+      }
     }
   }
 })
