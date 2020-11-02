@@ -102,9 +102,7 @@
               <button class="btn btn-primary" v-on:click="addCert">Add Certification</button>
               <button class="btn btn-primary" v-on:click="triggerCancel">Cancel</button>
       </div>
-      <br>
-      <button class="btn btn-primary" v-on:click="deleteMbr">Delete Member</button>
-      <br>
+
       <div v-if="stationInsert">
               <h3>Select Station:</h3>
               <select v-model='stationSelected'>
@@ -180,6 +178,10 @@
           </table>
         </div>
       </div>
+      <br>
+
+      <br>
+      <button class="btn btn-primary" v-on:click="deleteMbr">Delete Member</button>
       <br>
 
     </div>
