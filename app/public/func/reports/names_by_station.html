@@ -1,101 +1,177 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- Credit for open source template base design https://github.com/StartBootstrap/startbootstrap-freelancer -->
+<!-- All other code developed by Team 23 of '21 MSIS Core -->
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Oconee Country Fire Rescue</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../../css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="../../index.html">Oconee County Fire Rescue</a>
+                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/table.css">
-    <link rel="icon" href="favicon.ico">
-    <title>Big Brain, Big Books</title>
-  </head>
+            <!--  Leaving this here
 
-  <!-- Navigation bar -->
-  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-      <div class="container">
-          <a class="navbar-brand js-scroll-trigger" href="index.html">Oconee County Fire Rescue</a>
-          <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-              Menu
-              <i class="fas fa-bars"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ml-auto">
-                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="func/detail_view/member_view.html">Member</a></li>
-                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="func/detail_view/certification_view.html">Certification</a></li>
-                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="func/data_entry/mbr_cert_insert.html">Update Certification</a></li>
-              </ul>
-          </div>
-      </div>
-  </nav>
+                class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                
+                <h1 class="masthead-heading text-uppercase mb-0">Test Heading</h1>
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+            -->
+            <br /><br /> <!-- Basically idk this header was annoying -->
+        </header>
+        <!-- Portfolio Section-->
+        <section class="page-section portfolio" id="portfolio">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Members By Station</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+            <!-- Body -->
 
-<!-- Body -->
+            <body>
 
-  <body>
-
-    <div class="container" id="namesByStation">
-
-      <h1>Members By Station</h1>
-      <br>
-      <h3>Choose station:</h3>
-      <br>
-      <select v-model='stationSelection' v-on:change="filterStation">
-        <option value="all_stations">(All)</option>
-        <option v-for="s in uniqueStations">
-          {{s}}
-        </option>
-      </select>
-      <br>
-      <br>
-      <button type="button" class="btn btn-primary" v-on:click="exportSelection">Export selection as CSV</button>
-      <br>
-      <h3>Members</h3>
-      <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-        <table class="table table-bordered table-hover table-sm">
-          <thead>
-            <tr>
-              <th scope="col">Station Name</th>
-              <th scope="col">Radio Number</th>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Rank</th>
-              <th scope="col">Active Member?</th>
-              <th scope="col">Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="p in filterResults">
-              <td>{{p.station_name}}</td>
-              <td>{{p.radio_number}}</td>
-              <td>{{p.first_name}}</td>
-              <td>{{p.last_name}}</td>
-              <td>{{p.rank_name}}</td>
-              <td>{{p.is_active}}</td>
-              <td>{{p.contact_email}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <br>
-
-    </div>
-
-    <br>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="/js/reports/names_by_station.app.js"></script>
-
-  </body>
-
-
-
-
+                <div class="container" id="namesByStation">
+            
+         
+                  <br>
+                  <h3>Choose station:</h3>
+                  <br>
+                  <select v-model='stationSelection' v-on:change="filterStation">
+                    <option value="all_stations">(All)</option>
+                    <option v-for="s in uniqueStations">
+                      {{s}}
+                    </option>
+                  </select>
+                  <br>
+                  <br>
+                  <button type="button" class="btn btn-primary" v-on:click="exportSelection">Export selection as CSV</button>
+                  <br>
+                  <h3>Members</h3>
+                  <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-bordered table-hover table-sm">
+                      <thead>
+                        <tr>
+                          <th scope="col">Station Name</th>
+                          <th scope="col">Radio Number</th>
+                          <th scope="col">First Name</th>
+                          <th scope="col">Last Name</th>
+                          <th scope="col">Rank</th>
+                          <th scope="col">Active Member?</th>
+                          <th scope="col">Email</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="p in filterResults">
+                          <td>{{p.station_name}}</td>
+                          <td>{{p.radio_number}}</td>
+                          <td>{{p.first_name}}</td>
+                          <td>{{p.last_name}}</td>
+                          <td>{{p.rank_name}}</td>
+                          <td>{{p.is_active}}</td>
+                          <td>{{p.contact_email}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+            
+                  <br>
+            
+                </div>
+            
+                <br>
+                   
+                </div>
+            </div>
+        </section>
+       
+        <!-- Footer-->
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- Footer Location-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Phone Number</h4>
+                        <p class="lead mb-0">
+                            (706) 769-3975
+                        </p>
+                    </div>
+                    <!-- Footer Social Icons-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                       
+                    </div>
+                    <!-- Footer About Text-->
+                    <div class="col-lg-4">
+                        <h4 class="text-uppercase mb-4">Location</h4>
+                        <p class="lead mb-0">
+                            1291 Greensboro Hwy 
+Watkinsville, GA 30677
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Copyright Section-->
+        <div class="copyright py-4 text-center text-white">
+            <div class="container"><small>Copyright © Oconee County Fire Rescue 2020</small></div>
+        </div>
+        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+        <div class="scroll-to-top d-lg-none position-fixed">
+            <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
+        </div>
+       
+  
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <script src="../../assets/mail/jqBootstrapValidation.js"></script>
+        <script src="../../assets/mail/contact_me.js"></script>
+        <!-- VueJS JS-->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="../../js/reports/names_by_station.app.js"></script>
+    
+        <!-- Core theme JS-->
+        <script src="../../js/scripts.js"></script>
+    </body>
 </html>
