@@ -28,6 +28,7 @@ $attempt = $firstNameSet && $lastNameSet && $genderSet && $radioNumSet && $rankI
                 && $homePhoneSet && $workPhoneSet && $mobilePhoneSet;
 
 
+
 if ($attempt) {
   $sql = "INSERT INTO Person (first_name, last_name, gender, radio_number, rank_id,
                               is_active, date_of_birth, start_date, street_address,
@@ -37,6 +38,7 @@ if ($attempt) {
                   ?, ?, ?, ?, ?,
                   ?, ?, ?, ?, ?,
                   ?)";
+
 
   $stmt = $db->prepare($sql);
   $vars = [$_POST['first_name'],

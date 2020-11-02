@@ -43,6 +43,7 @@ if ($attempt) {
               state_abbr = ?,
               zip = ?,
               contact_email = ?,
+
               home_phone = ?,
               work_phone = ?,
               mobile_phone = ?
