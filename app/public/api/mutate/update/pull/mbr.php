@@ -5,20 +5,22 @@ require 'common.php';
 // Get connection from helper
 $db = DbConnection::getConnection();
 
-// check if the certId is set
-if (isset($_POST['personId'])) {
+if (isset($_GET['mbrId'])) {
+  $vars = [$_GET['mbrId']];
+
   /*
-      SQL statement: Deletes the certification and its child records based on
-                     cert id.
+    SQL statement: Gets member details by id
   */
-  $sql = "DELETE FROM Person WHERE person_id = ?";
+  $sql = 'SELECT *
+          FROM Person
+          WHERE Person.person_id = ?
+          ';
+
   $stmt = $db->prepare($sql);
-  $vars = [$_POST['personId']];
   $stmt->execute($vars);
+  $result = $stmt->fetchAll();
 
-  $statusObj = array('status' => 'ok');
-
-  $json = json_encode($statusObj, JSON_PRETTY_PRINT);
+  $json = json_encode($result, JSON_PRETTY_PRINT);
 
   // 200 OK
   http_response_code(200);

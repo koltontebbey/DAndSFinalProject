@@ -64,7 +64,7 @@ CREATE TABLE Person(
   first_name varchar(25) NOT NULL,
   last_name varchar(25) NOT NULL,
   gender VARCHAR(25) NOT NULL,
-  radio_number int NOT NULL,
+  radio_number VARCHAR(25) NOT NULL,
   rank_id int,
   is_active boolean NOT NULL,
   date_of_birth date NOT NULL,
@@ -74,9 +74,9 @@ CREATE TABLE Person(
   state_abbr char(2) NOT NULL,
   zip varchar(10) NOT NULL,
   contact_email VARCHAR(50) NOT NULL,
-  home_phone varchar(10) NOT NULL,
-  work_phone varchar(10) NOT NULL,
-  mobile_phone varchar(10) NOT NULL,
+  home_phone varchar(10),
+  work_phone varchar(10),
+  mobile_phone varchar(10),
   foreign key (state_abbr) references States(state_abbr),
   foreign key (rank_id) references Ranks(rank_id)
 		ON DELETE SET NULL

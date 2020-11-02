@@ -35,87 +35,26 @@
 
   <body>
 
-    <div class="container" id="mbrCertEntry">
-      <h1 class="item-label">New Certification for Member</h1><br>
-      <h2> Choose a member:</h2>
-      <select v-model='mbrSelected' v-on:change="fetchMbrDetails">
-        <option v-for="mbr in mbrList" v-bind:value="{id: mbr.person_id}">
-          {{ mbr.last_name }}, {{mbr.first_name}}
-        </option>
-      </select>
-      <br>
-      <br>
-      <h2> Member Details: </h2>
-      Last Name: {{mbrDetails.last_name}}
-      <br>
-      First Name: {{mbrDetails.first_name}}
-      <br>
-      Rank: {{mbrDetails.rank_name}}
-      <br>
-      Active: {{mbrDetails.is_active}}
-      <br>
-      Email: {{mbrDetails.contact_email}}
-      <br>
-      <br>
-      <h2>Certifications:</h2>
-      <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
-        <table id="certTable" class="table table-bordered table-hover table-sm">
-          <thead>
-            <tr>
-              <th scope="col">Certification Name</th>
-              <th scope="col">Date Obtained</th>
-              <th scope="col">Expiry Date</th>
-              <th scope="col">Expired?</th>
-            </tr>
-          </thead>
-          <tbody id="mbrTableBody">
-            <tr v-for="c in mbrCerts">
-              <td>{{c.cert_name}}</td>
-              <td>{{c.date_obtained}}</td>
-              <td>{{c.exp_date}}</td>
-              <td>{{c.expired}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div v-if="!blockInsert">
-        <button v-on:click="unhideCertEntry">Add Certification</button>
-      </div>
+    <div class="container" id="addRank">
+      <h1 class="item-label">Add a rank:</h1>
+
+      <form method='POST' v-on:submit.prevent="postAdd" id="addRankForm">
+
+        <div class="form-group">
+          <label for="rankNameInput">Rank name</label>
+          <input type="text" class="form-control" id="rankNameInput" v-model.trim="usrInput.rank_name" placeholder="King">
+        </div>
+
+        <div class="form-group">
+          <label for="rankDescriptionInput">Rank description</label>
+          <input type="text" class="form-control" id="rankDescriptionInput" v-model.trim="usrInput.rank_description"  placeholder="Ocean Master">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      </form>
 
       <br>
-
-      <div v-if="blockInsert">
-        <h3>Select Certification:</h3>
-
-        <select v-model='certSelected' v-on:change='fetchCertDetails'>
-          <option v-for="c in certList" v-bind:value="{id: c.cert_id}">
-            {{ c.cert_name }}
-          </option>
-        </select>
-        <br>
-          <table class="table table-bordered table-hover table-sm">
-            <thead>
-              <tr>
-                <th scope="col">Certification Name</th>
-                <th scope="col">Default Expiry</th>
-                <th scope="col">Agency</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{certDetails.cert_name}}</td>
-                <td>{{certDetails.default_exp}}</td>
-                <td>{{certDetails.agency_name}}</td>
-              </tr>
-            </tbody>
-          </table>
-        Date Obtained:
-        <input type="date" v-model="date_obt">
-        <br>
-        <button v-on:click="insertCert">Add</button>
-        <button v-on:click="cancelEntry">Cancel</button>
-      </div>
-
     </div>
 
     <br>
@@ -126,10 +65,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="/js/data_entry/enter_mbr_cert.app.js"></script>
+    <script src="/js/mutate/add/rank.app.js"></script>
 
   </body>
-
-
 
 </html>

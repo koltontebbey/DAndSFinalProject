@@ -38,7 +38,7 @@ var app = new Vue({
          var requestOptions = {
            method: 'GET'
          }
-         fetch('/api/common/list_mbr.php', requestOptions)
+         fetch('/api/common/helper/list_mbr.php', requestOptions)
          .then(response => response.json())
          .then(data => {
            this.listContainer = data;
@@ -52,7 +52,7 @@ var app = new Vue({
          var requestOptions = {
            method: 'GET'
          }
-         fetch('/api/common/list_cert.php', requestOptions)
+         fetch('/api/common/helper/list_cert.php', requestOptions)
          .then(response => response.json())
          .then(data => {
            this.listContainer = data;

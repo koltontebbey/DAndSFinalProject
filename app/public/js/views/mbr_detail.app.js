@@ -55,7 +55,7 @@ var app = new Vue({
                              .concat(mbrName, " from the system?"));
      // on true call delete API
      if(response){
-       var apiPath = '/api/mutate/delete_mbr.php';
+       var apiPath = '/api/mutate/delete/mbr.php';
        var requestOptions = {
          method: 'POST',
          headers: {'Content-Type': 'application/json'},
