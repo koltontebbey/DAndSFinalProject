@@ -62,6 +62,9 @@ var app = new Vue({
        if(this.mbrExpiredCerts.length > 0){
          this.expiredViewToggle = true;
        }
+       else{
+         this.expiredViewToggle = false;
+       }
      });
 
    },
