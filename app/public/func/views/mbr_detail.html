@@ -120,6 +120,21 @@
         <button class="btn btn-primary" v-on:click="addStationTrigger">Add Station Assignment</button>
       </div>
       <br>
+      <div v-if="!stationRemove">
+        <button class="btn btn-primary" v-on:click="removeStationTrigger">Remove Station Assignment</button>
+      </div>
+      <div v-if="stationRemove">
+        <h3>Select Station:</h3>
+        <select v-model='stationSelectedRmv'>
+          <option v-for="s in stationAssgn" v-bind:value="s.station_id">
+            {{ s.station_name }}
+          </option>
+        </select>
+        <br>
+        <button class="btn btn-primary" v-on:click="removeStationGo">Remove</button>
+        <button class="btn btn-primary" v-on:click="triggerCancelStationRmv">Cancel</button>
+      </div>
+      <br>
       <h2>Station Assignments:</h2>
       <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
         <table class="table table-bordered table-hover table-sm">
@@ -136,6 +151,7 @@
         </table>
       </div>
       <br>
+
       <br>
       <h2>Valid Certifications:</h2>
       <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
@@ -179,7 +195,20 @@
         </div>
       </div>
       <br>
-
+      <div v-if="!certRemove">
+        <button class="btn btn-primary" v-on:click="removeCertTrigger">Remove Certification</button>
+      </div>
+      <div v-if="certRemove">
+        <h3>Select Certification:</h3>
+        <select v-model='certSelectedRmv'>
+          <option v-for="c in allCerts" v-bind:value="c.cert_id">
+            {{ c.cert_name }}
+          </option>
+        </select>
+        <br>
+        <button class="btn btn-primary" v-on:click="removeCertGo">Remove</button>
+        <button class="btn btn-primary" v-on:click="triggerCancelCertRmv">Cancel</button>
+      </div>
       <br>
       <button class="btn btn-primary" v-on:click="deleteMbr">Delete Member</button>
       <br>

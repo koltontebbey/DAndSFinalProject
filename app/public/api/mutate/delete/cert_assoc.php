@@ -6,13 +6,13 @@ require 'common.php';
 $db = DbConnection::getConnection();
 
 // check if the certId is set
-if (isset($_POST['certId']) && isset($_POST['personId'])) {
+if (isset($_POST['cert_id']) && isset($_POST['person_id'])) {
   /*
       SQL statement: deletes the association between person and cert
   */
   $sql = "DELETE FROM Cert_assoc WHERE cert_id = ? AND person_id = ?";
   $stmt = $db->prepare($sql);
-  $vars = [$_POST['certId'], $_POST['person_id']];
+  $vars = [$_POST['cert_id'], $_POST['person_id']];
   $stmt->execute($vars);
 
   $statusObj = array('status' => 'ok');
