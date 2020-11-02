@@ -76,7 +76,67 @@
       Zip: {{mbrDetails.zip}}
       <br>
       <br>
+      <button class="btn btn-primary" v-on:click="updateRedir">Edit Member Details</button>
+      <br>
+      <br>
+      <div v-if="!blockInsert">
+        <button class="btn btn-primary" v-on:click="addCertTrigger">Add Certification</button>
+      </div>
+      <div v-if="blockInsert">
+              <h3>Select Certification:</h3>
+              <select v-model='certSelected'>
+                <option v-for="c in certList" v-bind:value="c.cert_id">
+                  {{ c.cert_name }}
+                </option>
+              </select>
+              <br>
+              <label>
+                Date Obtained:
+                <input type="date" v-model="date_obt">
+              </label>
+              <label>
+                Expiry Date
+                <input type="date" v-model="exp_date">
+              </label>
+              <br>
+              <button class="btn btn-primary" v-on:click="addCert">Add Certification</button>
+              <button class="btn btn-primary" v-on:click="triggerCancel">Cancel</button>
+      </div>
+      <br>
       <button class="btn btn-primary" v-on:click="deleteMbr">Delete Member</button>
+      <br>
+      <div v-if="stationInsert">
+              <h3>Select Station:</h3>
+              <select v-model='stationSelected'>
+                <option v-for="s in stationList" v-bind:value="s.station_id">
+                  {{ s.station_name }}
+                </option>
+              </select>
+              <br>
+              <br>
+              <button class="btn btn-primary" v-on:click="addStation">Add Station</button>
+              <button class="btn btn-primary" v-on:click="triggerCancelStation">Cancel</button>
+      </div>
+      <br>
+      <div v-if="!stationInsert">
+        <button class="btn btn-primary" v-on:click="addStationTrigger">Add Station Assignment</button>
+      </div>
+      <br>
+      <h2>Station Assignments:</h2>
+      <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-bordered table-hover table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Station Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="s in stationAssgn">
+              <td>{{s.station_name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <br>
       <br>
       <h2>Valid Certifications:</h2>

@@ -4,7 +4,8 @@ var app = new Vue({
     usrInput: [],
     stateList: [],
     rankList: [],
-    mbrId: ''
+    mbrId: '',
+    dtRedir: '',
   },
   // calls the fetch function when created to pull data
   created() {
@@ -64,6 +65,7 @@ var app = new Vue({
       };
       const urlParam = new URLSearchParams(window.location.search);
       this.mbrId = urlParam.get('id');
+      this.dtRedir = urlParam.get('dt');
       var apiPath = '/api/mutate/update/pull/mbr.php?mbrId='.concat(this.mbrId);
       fetch(apiPath, requestOptions)
       .then(response => response.json())
@@ -83,11 +85,18 @@ var app = new Vue({
       .then(data => {
         if(data['status'] === 'ok'){
           alert('Member has been updated.');
-          //data has been added alright, redirect
           const host = 'http://'.concat(window.location.host);
-          var path = '/func/mutate/update/mbr.html?id='.concat(this.mbrId);
-          path = host.concat(path);
-          window.location.href = path;
+          //data has been added alright, redirect
+          if(this.dtRedir === 'yes'){
+            var path = '/func/views/mbr_detail.html?id='.concat(this.mbrId);
+            path = host.concat(path);
+            window.location.href = path;
+          }
+          else{
+            var path = '/func/mutate/update/mbr.html?id='.concat(this.mbrId);
+            path = host.concat(path);
+            window.location.href = path;
+          }
           }
           else{
             console.log(data)

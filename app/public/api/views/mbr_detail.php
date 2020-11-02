@@ -66,9 +66,18 @@ if (isset($_GET['mbrId'])) {
     $stmt2->execute($vars);
     $certs = $stmt2->fetchAll();
 
+    $sql3 = 'SELECT * FROM Station, Station_assoc
+             WHERE  Station_assoc.station_id = Station.station_id AND
+                    Station_assoc.person_id = ?';
+
+    $stmt3 = $db->prepare($sql3);
+    $stmt3->execute($vars);
+    $stations = $stmt3->fetchAll();
+
     $result = [
       "mbr_details" => $details,
-      "certs" => $certs
+      "certs" => $certs,
+      "stations" => $stations
     ];
 
     $json = json_encode($result, JSON_PRETTY_PRINT);

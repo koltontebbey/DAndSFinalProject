@@ -8,7 +8,7 @@ $db = DbConnection::getConnection();
 /*
   SQL Statement: Gets a list of certifications ordered by name
 */
-$sql = 'SELECT cert_id, cert_name
+$sql = 'SELECT *
 FROM Certification
 ORDER BY cert_name';
 
