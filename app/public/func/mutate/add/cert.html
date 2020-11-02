@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../../../index.html">Home</a></li>
-                          
+
                       </ul>
                       <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,7 +42,7 @@
                             <a class="dropdown-item" href="../../common/search_agency.html">Agencies</a>
                             <a class="dropdown-item" href="../../common/search_rank.html">Ranks</a>
                             <a class="dropdown-item" href="../../common/search_station.html">Stations</a>
-                           
+
                         </li>
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,7 +57,7 @@
                             <a class="dropdown-item" href="../../common/search_mbr_cert.html?type=mbr">Assign Cert to Member</a>
                             <a class="dropdown-item" href="../../common/search_mbr_cert.html?type=mbr">Assign Member to Station</a>
                         </li>
-      
+
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Reports
@@ -65,8 +65,19 @@
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="../../reports/expired_cert.html">Expired Certifications</a>
                             <a class="dropdown-item" href="../../reports/names_by_station.html">Names By Station</a>
-                       
-                           
+
+
+                        </li>
+
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Lists
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="func/views/list_all_mbr.html">Members List</a>
+                            <a class="dropdown-item" href="func/views/list_all_cert.html">Certifications List</a>
+
+
                         </li>
                 </div>
             </div>
@@ -78,7 +89,7 @@
 
                 class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
-                
+
                 <h1 class="masthead-heading text-uppercase mb-0">Test Heading</h1>
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -104,21 +115,21 @@
             <body>
 
                 <div class="container" id="addCert">
-                  
-            
+
+
                   <form method='POST' v-on:submit.prevent="postAdd" id="addCertForm">
-            
+
                     <div class="form-group">
                       <label for="certNameIn">Certification name</label>
                       <input type="text" class="form-control" id="certNameIn" v-model.trim="usrInput.cert_name" placeholder="Chest compressions i.e. CPR">
                     </div>
-            
+
                     <div class="form-group">
                       <label for="expIn">Default expiry (yrs)</label>
                       <input type="number" class="form-control" id="expIn" v-model.trim="usrInput.default_exp"  placeholder="3">
                     </div>
-            
-            
+
+
                     <div class="form-group">
                         <label for="stateSel">Certifying agency</label>
                         <select v-model='usrInput.cert_agency_id' class="form-control" id = "stateSel">
@@ -127,25 +138,25 @@
                           </option>
                         </select>
                     </div>
-            
+
                     <button type="button" class="btn btn-primary" v-on:click="redirAgency" >Add an agency</button>
                     <br>
-            
+
                     <br>
-            
+
                     <button type="submit" class="btn btn-primary">Submit</button>
-            
+
                   </form>
-            
+
                   <br>
                 </div>
-            
+
                 <br>
-                   
+
                 </div>
             </div>
         </section>
-       
+
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
@@ -159,13 +170,13 @@
                     </div>
                     <!-- Footer Social Icons-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                       
+
                     </div>
                     <!-- Footer About Text-->
                     <div class="col-lg-4">
                         <h4 class="text-uppercase mb-4">Location</h4>
                         <p class="lead mb-0">
-                            1291 Greensboro Hwy 
+                            1291 Greensboro Hwy
 Watkinsville, GA 30677
                         </p>
                     </div>
@@ -180,8 +191,8 @@ Watkinsville, GA 30677
         <div class="scroll-to-top d-lg-none position-fixed">
             <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
         </div>
-       
-  
+
+
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
@@ -194,7 +205,7 @@ Watkinsville, GA 30677
         <!-- VueJS JS-->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="../../../js/mutate/add/cert.app.js"></script>
-    
+
         <!-- Core theme JS-->
         <script src="../../../js/scripts.js"></script>
     </body>

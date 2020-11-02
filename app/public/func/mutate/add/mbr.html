@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                   <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../../../index.html">Home</a></li>
-                      
+
                   </ul>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,7 +42,7 @@
                         <a class="dropdown-item" href="../../common/search_agency.html">Agencies</a>
                         <a class="dropdown-item" href="../../common/search_rank.html">Ranks</a>
                         <a class="dropdown-item" href="../../common/search_station.html">Stations</a>
-                       
+
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,7 +57,7 @@
                         <a class="dropdown-item" href="../../common/search_mbr_cert.html?type=mbr">Assign Cert to Member</a>
                         <a class="dropdown-item" href="../../common/search_mbr_cert.html?type=mbr">Assign Member to Station</a>
                     </li>
-  
+
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Reports
@@ -65,8 +65,19 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="../../reports/expired_cert.html">Expired Certifications</a>
                         <a class="dropdown-item" href="../../reports/names_by_station.html">Names By Station</a>
-                   
-                       
+
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lists
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="func/views/list_all_mbr.html">Members List</a>
+                        <a class="dropdown-item" href="func/views/list_all_cert.html">Certifications List</a>
+
+
                     </li>
                 </div>
             </div>
@@ -78,7 +89,7 @@
 
                 class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
-                
+
                 <h1 class="masthead-heading text-uppercase mb-0">Test Heading</h1>
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -104,20 +115,20 @@
             <body>
 
                 <div class="container" id="addAgency">
-                 
-            
+
+
                   <form method='POST' v-on:submit.prevent="postAdd" id="addMemberForm">
-            
+
                     <div class="form-group">
                       <label for="firstNameIn">First name</label>
                       <input type="text" class="form-control" id="firstNameIn" v-model.trim="usrInput.first_name" placeholder="Madlad">
                     </div>
-            
+
                     <div class="form-group">
                       <label for="lastNameIn">Last name</label>
                       <input type="text" class="form-control" id="lastNameIn" v-model.trim="usrInput.last_name" placeholder="Jefferson">
                     </div>
-            
+
                     <div class="form-group">
                       <label for="genderSel">Gender</label>
                       <select v-model='usrInput.gender' class="form-control" id = "genderSel">
@@ -126,14 +137,14 @@
                         <option value="Other">Other</option>
                       </select>
                     </div>
-            
+
                     <div class="form-group">
                       <label for="radioNumIn">Radio number</label>
                       <input type="text" class="form-control" id="radioNumIn" v-model.trim="usrInput.radio_number"  placeholder="1234">
                     </div>
-            
+
                     <div class="form-row">
-            
+
                       <div class="form-group col-md-6">
                         <label for="rankSel">Rank</label>
                         <select v-model='usrInput.rank_id' class="form-control" id = "rankSel">
@@ -142,7 +153,7 @@
                           </option>
                         </select>
                       </div>
-            
+
                       <div class="form-group col-md-6">
                         <label for="activeSel">Active?</label>
                         <select v-model='usrInput.is_active' class="form-control" id = "activeSel">
@@ -150,37 +161,37 @@
                           <option value="0">No</option>
                         </select>
                       </div>
-            
+
                     </div>
-            
+
                     <div class="form-group">
                       <label for="dob">Date of birth</label>
                       <input type="date" id="dob" name="Date Of Birth" v-model='usrInput.date_of_birth'>
                     </div>
-            
+
                     <div class="form-group">
                       <label for="startDate">Start date</label>
                       <input type="date" id="startDate" name="Start date" v-model='usrInput.start_date'>
                     </div>
-            
-            
+
+
                     <div class="form-group">
                       <label for="streetAddIn">Street address</label>
                       <input type="text" class="form-control" id="streetAddIn" v-model.trim="usrInput.street_address"  placeholder="1234 Main St.">
                     </div>
-            
+
                     <div class="form-row">
-            
+
                       <div class="form-group col-md-8">
                         <label for="cityIn">City</label>
                         <input type="text" class="form-control" id="cityIn" v-model.trim="usrInput.city" placeholder="Bloomington">
                       </div>
-            
+
                       <div class="form-group col-md-4">
                         <label for="zipIn">Zip code</label>
                         <input type="text" class="form-control" id="zipIn" v-model.trim="usrInput.zip" placeholder="47405">
                       </div>
-            
+
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -191,47 +202,47 @@
                             </option>
                           </select>
                       </div>
-            
-            
+
+
                         <div class="form-group col-md-6">
                           <label for="emailIn">Email</label>
                           <input type="text" class="form-control" id="emailIn" v-model.trim="usrInput.contact_email"  placeholder="abc@abc.com">
                         </div>
-            
+
                     </div>
-            
+
                     <div class="form-row">
-            
+
                       <div class="form-group col-md-4">
                         <label for="homeNumberInput">Home phone</label>
                         <input type="text" class="form-control" id="homeNumberInput" v-model.trim="usrInput.home_phone" placeholder="4891561234">
                       </div>
-            
+
                       <div class="form-group col-md-4">
                         <label for="workNumberInput">Work phone</label>
                         <input type="text" class="form-control" id="workNumberInput" v-model.trim="usrInput.work_phone" placeholder="4891561234">
                       </div>
-            
+
                       <div class="form-group col-md-4">
                         <label for="mobileNumberInput">Mobile Phone</label>
                         <input type="text" class="form-control" id="mobileNumberInput" v-model.trim="usrInput.mobile_phone" placeholder="4891561234">
                       </div>
-            
+
                     </div>
-            
+
                     <button type="submit" class="btn btn-primary">Submit</button>
-            
+
                   </form>
-            
+
                   <br>
                 </div>
-            
+
                 <br>
-                   
+
                 </div>
             </div>
         </section>
-       
+
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
@@ -245,13 +256,13 @@
                     </div>
                     <!-- Footer Social Icons-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                       
+
                     </div>
                     <!-- Footer About Text-->
                     <div class="col-lg-4">
                         <h4 class="text-uppercase mb-4">Location</h4>
                         <p class="lead mb-0">
-                            1291 Greensboro Hwy 
+                            1291 Greensboro Hwy
 Watkinsville, GA 30677
                         </p>
                     </div>
@@ -266,8 +277,8 @@ Watkinsville, GA 30677
         <div class="scroll-to-top d-lg-none position-fixed">
             <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
         </div>
-       
-  
+
+
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
@@ -280,7 +291,7 @@ Watkinsville, GA 30677
         <!-- VueJS JS-->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="../../../js/mutate/add/mbr.app.js"></script>
-    
+
         <!-- Core theme JS-->
         <script src="../../../js/scripts.js"></script>
     </body>
