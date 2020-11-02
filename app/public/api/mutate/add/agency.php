@@ -1,8 +1,5 @@
 <?php
 
-session_start();
-
-
 require 'common.php';
 
 // Get connection from helper
