@@ -1,38 +1,26 @@
 var app = new Vue({
-  el: '#addCert',
+  el: '#updateCert',
   data: {
     usrInput: [],
-    agencyList: []
+    agencyList: [],
+    certSelected: '',
+    rdir:''
   },
   // calls the fetch function when created to pull data
   created() {
     this.usrInput = this.createBlock();
     this.getAgencyList();
+    this.getCurrentCert();
   },
 
   methods: {
     // creates json block for data
     createBlock: function(){
       var result = {
+        cert_id:"",
         cert_name: "",
         cert_agency_id: "",
         default_exp: ""
-      }
-      const urlParam = new URLSearchParams(window.location.search);
-      var redir = urlParam.get('getinfo');
-      if(redir === "1"){
-
-        fetch('/api/mutate/add/redir_search_sesh.php?getinfo=1')
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          if(data['cert_name'] != null){
-             result['cert_name'] = data['cert_name']
-          }
-          if(data['default_exp'] != null){
-             result['default_exp'] = data['default_exp']
-          }
-        });
       }
       return result;
     },
@@ -47,6 +35,16 @@ var app = new Vue({
         this.agencyList = data;
       });
     },
+    getCurrentCert: function(){
+      const urlParam = new URLSearchParams(window.location.search);
+      this.certSelected = urlParam.get('id');
+      var apiPath = '/api/mutate/update/pull/cert.php?certId='.concat(this.certSelected);
+      fetch(apiPath)
+      .then(response => response.json())
+      .then(data => {
+        this.usrInput = data[0];
+      });
+    },
     // posts the data into api endpoint
     postAdd: function() {
       var requestOptions = {
@@ -54,16 +52,25 @@ var app = new Vue({
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(this.usrInput)
       };
-      fetch('/api/mutate/add/cert.php', requestOptions)
+      fetch('/api/mutate/update/cert.php', requestOptions)
       .then(response => response.json())
       .then(data => {
         if(data['status'] === 'ok'){
-          alert('New certification has been added.');
+          alert('Certification has been updated.');
+          const urlParam = new URLSearchParams(window.location.search);
+          this.rdir = urlParam.get('rdir');
           //data has been added alright, redirect
           const host = 'http://'.concat(window.location.host);
-          var path = '/func/mutate/add/cert.html';
-          path = host.concat(path);
-          window.location.href = path;
+          if(this.rdir === '1'){
+            var path = '/func/views/cert_detail.html?id='.concat(this.certSelected);
+            path = host.concat(path);
+            window.location.href = path;
+          }
+          else{
+            var path = '/func/mutate/update/cert.html?id='.concat(this.certSelected);
+            path = host.concat(path);
+            window.location.href = path;
+          }
         }
       });
     }

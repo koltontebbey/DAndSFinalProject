@@ -57,7 +57,7 @@
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
                 <!-- Portfolio Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Certification Record</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Member Record</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -66,82 +66,180 @@
                 </div>
             <!-- Body -->
 
-  <body>
+            <body>
 
-    <br>
 
-    <div class="container" id="certDetails">
-      
+    <div class="container" id="mbrDetails">
+      <br>
+      <h2> Member Details: </h2>
+      Last Name: {{mbrDetails.last_name}}
+      <br>
+      First Name: {{mbrDetails.first_name}}
+      <br>
+      Rank: {{mbrDetails.rank_name}}
+      <br>
+      Active: {{mbrDetails.is_active}}
+      <br>
+      Email: {{mbrDetails.contact_email}}
+      <br>
+      Home Phone: {{mbrDetails.home_phone}}
+      <br>
+      Mobile Phone: {{mbrDetails.mobile_phone}}
+      <br>
+      Work Phone: {{mbrDetails.work_phone}}
+      <br>
+      Start Date: {{mbrDetails.start_date}}
+      <br>
+      Street Address: {{mbrDetails.street_address}}
+      <br>
+      City: {{mbrDetails.city}}
+      <br>
+      Zip: {{mbrDetails.zip}}
+      <br>
+      <br>
+      <button class="btn btn-primary" v-on:click="updateRedir">Edit Member Details</button>
+      <br>
+      <br>
+      <div v-if="!blockInsert">
+        <button class="btn btn-primary" v-on:click="addCertTrigger">Add Certification</button>
+      </div>
+      <div v-if="blockInsert">
+              <h3>Select Certification:</h3>
+              <select v-model='certSelected'>
+                <option v-for="c in certList" v-bind:value="c.cert_id">
+                  {{ c.cert_name }}
+                </option>
+              </select>
+              <br>
+              <label>
+                Date Obtained:
+                <input type="date" v-model="date_obt">
+              </label>
+              <label>
+                Expiry Date
+                <input type="date" v-model="exp_date">
+              </label>
+              <br>
+              <button class="btn btn-primary" v-on:click="addCert">Add Certification</button>
+              <button class="btn btn-primary" v-on:click="triggerCancel">Cancel</button>
+      </div>
 
-      <h2> Certification Details: </h2>
-      Certification Name: {{certDetails.cert_name}}
+      <div v-if="stationInsert">
+              <h3>Select Station:</h3>
+              <select v-model='stationSelected'>
+                <option v-for="s in stationList" v-bind:value="s.station_id">
+                  {{ s.station_name }}
+                </option>
+              </select>
+              <br>
+              <br>
+              <button class="btn btn-primary" v-on:click="addStation">Add Station</button>
+              <button class="btn btn-primary" v-on:click="triggerCancelStation">Cancel</button>
+      </div>
       <br>
-      Default Expiry (years): {{certDetails.default_exp}}
+      <div v-if="!stationInsert">
+        <button class="btn btn-primary" v-on:click="addStationTrigger">Add Station Assignment</button>
+      </div>
       <br>
-      Certifying Agency: {{certDetails.agency_name}}
+      <div v-if="!stationRemove">
+        <button class="btn btn-primary" v-on:click="removeStationTrigger">Remove Station Assignment</button>
+      </div>
+      <div v-if="stationRemove">
+        <h3>Select Station:</h3>
+        <select v-model='stationSelectedRmv'>
+          <option v-for="s in stationAssgn" v-bind:value="s.station_id">
+            {{ s.station_name }}
+          </option>
+        </select>
+        <br>
+        <button class="btn btn-primary" v-on:click="removeStationGo">Remove</button>
+        <button class="btn btn-primary" v-on:click="triggerCancelStationRmv">Cancel</button>
+      </div>
       <br>
-      Agency Contact Email: {{certDetails.email}}
-      <br>
-      Agency Phone Number: {{certDetails.phone_num}}
-      <br>
-      <br>
-      <button class="btn btn-primary" v-on:click="editCert">Edit Certification</button>
-      <br>
-      <button class="btn btn-primary" v-on:click="deleteCert">Delete Certification</button>
-      <br>
-
-      <h2>Members with this certification that is current:</h2>
+      <h2>Station Assignments:</h2>
       <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
         <table class="table table-bordered table-hover table-sm">
           <thead>
             <tr>
-              <th scope="col">Last Name</th>
-              <th scope="col">First Name</th>
-              <th scope="col">Date Obtained</th>
-              <th scope="col">Expiry Date</th>
+              <th scope="col">Station Name</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="m in mbrsWithCertValid">
-              <td>{{m.last_name}}</td>
-              <td>{{m.first_name}}</td>
-              <td>{{m.date_obtained}}</td>
-              <td>{{m.exp_date}}</td>
+            <tr v-for="s in stationAssgn">
+              <td>{{s.station_name}}</td>
             </tr>
           </tbody>
         </table>
       </div>
       <br>
-      <h2>Members with this certification that is expired:</h2>
+
+      <br>
+      <h2>Valid Certifications:</h2>
       <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
         <table class="table table-bordered table-hover table-sm">
           <thead>
             <tr>
-              <th scope="col">Last Name</th>
-              <th scope="col">First Name</th>
+              <th scope="col">Certification Name</th>
               <th scope="col">Date Obtained</th>
               <th scope="col">Expiry Date</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="m in mbrsWithCertExp">
-              <td>{{m.last_name}}</td>
-              <td>{{m.first_name}}</td>
-              <td>{{m.date_obtained}}</td>
-              <td>{{m.exp_date}}</td>
+            <tr v-for="c in mbrValidCerts">
+              <td>{{c.cert_name}}</td>
+              <td>{{c.date_obtained}}</td>
+              <td>{{c.exp_date}}</td>
             </tr>
           </tbody>
         </table>
       </div>
-
+      <br>
+      <div v-if="expiredViewToggle">
+        <h2>Expired Certifications:</h2>
+        <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+          <table class="table table-bordered table-hover table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Certification Name</th>
+                <th scope="col">Date Obtained</th>
+                <th scope="col">Expiry Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="c in mbrExpiredCerts">
+                <td>{{c.cert_name}}</td>
+                <td>{{c.date_obtained}}</td>
+                <td>{{c.exp_date}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div v-if="!certRemove">
+        <button class="btn btn-primary" v-on:click="removeCertTrigger">Remove Certification</button>
+      </div>
+      <div v-if="certRemove">
+        <h3>Select Certification:</h3>
+        <select v-model='certSelectedRmv'>
+          <option v-for="c in allCerts" v-bind:value="c.cert_id">
+            {{ c.cert_name }}
+          </option>
+        </select>
+        <br>
+        <button class="btn btn-primary" v-on:click="removeCertGo">Remove</button>
+        <button class="btn btn-primary" v-on:click="triggerCancelCertRmv">Cancel</button>
+      </div>
+      <br>
+      <button class="btn btn-primary" v-on:click="deleteMbr">Delete Member</button>
+      <br>
       <br>
 
-    </div>
 
-    <br>
+      </div>
 
-                </div>
-            </div>
+      </div>
+
+      <br>
         </section>
 
         <!-- Footer-->
@@ -174,6 +272,13 @@ Watkinsville, GA 30677
         <div class="copyright py-4 text-center text-white">
             <div class="container"><small>Copyright © Oconee County Fire Rescue 2020</small></div>
         </div>
+
+      </div>
+      <br>
+
+
+    <br>
+
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
             <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
@@ -294,7 +399,7 @@ Watkinsville, GA 30677
         <script src="../../assets/mail/contact_me.js"></script>
         <!-- VueJS JS-->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="../../js/views/cert_detail.app.js"></script>
+        <script src="../../js/views/mbr_detail.app.js"></script>
 
         <!-- Core theme JS-->
         <script src="../../js/scripts.js"></script>

@@ -50,9 +50,17 @@ var app = new Vue({
           alert('Station details has been updated.');
           //data has been added alright, redirect
           const host = 'http://'.concat(window.location.host);
-          var path = '/func/mutate/update/station.html?id='.concat(this.stationId);
-          path = host.concat(path);
-          window.location.href = path;
+          const urlParam = new URLSearchParams(window.location.search);
+          if(urlParam.get('rdir') === '1'){
+            var path = '/func/views/station_detail.html?id='.concat(this.stationId);
+            path = host.concat(path);
+            window.location.href = path;
+          }
+          else{
+            var path = '/func/mutate/update/station.html?id='.concat(this.stationId);
+            path = host.concat(path);
+            window.location.href = path;
+          }
         }
       });
     },

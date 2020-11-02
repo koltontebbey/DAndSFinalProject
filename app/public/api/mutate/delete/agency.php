@@ -5,14 +5,15 @@ require 'common.php';
 // Get connection from helper
 $db = DbConnection::getConnection();
 
-// check if the certId is set
-if (isset($_POST['cert_id']) && isset($_POST['person_id'])) {
+// check if the agencyId is set
+if (isset($_POST['agencyId'])) {
   /*
-      SQL statement: deletes the association between person and cert
+      SQL statement: Deletes the agency and its child records based on
+                     cert id.
   */
-  $sql = "DELETE FROM Cert_assoc WHERE cert_id = ? AND person_id = ?";
+  $sql = "DELETE FROM Agency WHERE agency_id = ?";
   $stmt = $db->prepare($sql);
-  $vars = [$_POST['cert_id'], $_POST['person_id']];
+  $vars = [$_POST['agencyId']];
   $stmt->execute($vars);
 
   $statusObj = array('status' => 'ok');

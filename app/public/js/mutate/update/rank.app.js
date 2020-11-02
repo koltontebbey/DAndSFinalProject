@@ -33,9 +33,17 @@ var app = new Vue({
           alert('Rank has been updated.');
           //data has been added alright, redirect
           const host = 'http://'.concat(window.location.host);
-          var path = '/func/mutate/update/rank.html?id='.concat(this.rankId);
-          path = host.concat(path);
-          window.location.href = path;
+          const urlParam = new URLSearchParams(window.location.search);
+          if(urlParam.get('rdir') === '1'){
+            var path = '/func/views/rank_detail.html?id='.concat(this.rankId);
+            path = host.concat(path);
+            window.location.href = path;
+          }
+          else{
+            var path = '/func/mutate/update/rank.html?id='.concat(this.rankId);
+            path = host.concat(path);
+            window.location.href = path;
+          }
         }
       });
     },

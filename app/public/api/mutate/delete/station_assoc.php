@@ -6,7 +6,7 @@ require 'common.php';
 $db = DbConnection::getConnection();
 
 // check if the certId is set
-if (isset($_POST['stationId']) && isset($_POST['personId'])) {
+if (isset($_POST['station_id']) && isset($_POST['person_id'])) {
   /*
       SQL statement: deletes association between person and station
   */

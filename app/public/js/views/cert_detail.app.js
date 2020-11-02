@@ -75,6 +75,12 @@ var app = new Vue({
           }
         })
       }
+    },
+    editCert: function(){
+      const host = 'http://'.concat(window.location.host);
+      var path = '/func/mutate/update/cert.html?id='.concat(this.certSelected, '&rdir=1');
+      path = host.concat(path);
+      window.location.href = path;
     }
   }
 })

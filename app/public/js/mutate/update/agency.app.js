@@ -63,9 +63,17 @@ var app = new Vue({
           alert('Agency has been updated.');
           //data has been added alright, redirect
           const host = 'http://'.concat(window.location.host);
-          var path = '/func/mutate/update/agency.html?id='.concat(this.agencyId);
-          path = host.concat(path);
-          window.location.href = path;
+          const urlParam = new URLSearchParams(window.location.search);
+          if(urlParam.get('rdir') === '1'){
+            var path = '/func/views/agency_detail.html?id='.concat(this.agencyId);
+            path = host.concat(path);
+            window.location.href = path;
+          }
+          else{
+            var path = '/func/mutate/update/agency.html?id='.concat(this.agencyId);
+            path = host.concat(path);
+            window.location.href = path;
+          }
         }
       });
     }

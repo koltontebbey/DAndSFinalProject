@@ -3,6 +3,7 @@ var app = new Vue({
   data: {
     mbrList: [],
     mbrDetails: [],
+    allCerts: [],
     mbrValidCerts: [],
     mbrExpiredCerts: [],
     mbrSelected: '',
@@ -15,7 +16,12 @@ var app = new Vue({
     stationInsert: false,
     stationAssgn: [],
     stationSelected: '',
-    stationList: []
+    stationList: [],
+    stationRemove:false,
+    stationSelectedRmv: '',
+    certRemove: false,
+    certSelectedRmv: ''
+
   },
 
   created() {
@@ -34,6 +40,7 @@ var app = new Vue({
      fetch(apiPath)
      .then(response => response.json())
      .then(data => {
+       this.allCerts = data['certs'];
        // first item in API endpoint is details of the member
        this.mbrDetails = data['mbr_details'][0];
        this.stationAssgn = data['stations'];
@@ -54,6 +61,9 @@ var app = new Vue({
        // unhides expired table if there are any expired cert
        if(this.mbrExpiredCerts.length > 0){
          this.expiredViewToggle = true;
+       }
+       else{
+         this.expiredViewToggle = false;
        }
      });
 
@@ -197,6 +207,66 @@ var app = new Vue({
      var path = '/func/mutate/update/mbr.html?id='.concat(this.mbrSelected,"&dt=yes");
      path = host.concat(path);
      window.location.href = path;
+   },
+   removeStationTrigger: function(){
+     this.stationRemove = true;
+   },
+   removeStationGo: function(){
+     var dataToInsert = {
+       'person_id': this.mbrSelected,
+       'station_id': this.stationSelectedRmv
+     }
+     var requestOptions = {
+       method: 'POST',
+       headers: {'Content-Type': 'application/json'},
+       body: JSON.stringify(dataToInsert)
+     };
+     fetch('/api/mutate/delete/station_assoc.php', requestOptions)
+     .then(response => response.json())
+     .then(data => {
+       if(data['status'] === 'ok'){
+         alert('Station has been deleted.');
+         this.triggerCancelStationRmv();
+         this.fetchPageDetails();
+         }
+         else{
+           console.log(data)
+         }
+       });
+   },
+   triggerCancelStationRmv: function(){
+     this.stationRemove = false;
+     this.stationSelectedRmv = '';
+   },
+   removeCertTrigger: function(){
+     this.certRemove = true;
+   },
+   removeCertGo: function(){
+     var dataToInsert = {
+       'person_id': this.mbrSelected,
+       'cert_id': this.certSelectedRmv
+     }
+     var requestOptions = {
+       method: 'POST',
+       headers: {'Content-Type': 'application/json'},
+       body: JSON.stringify(dataToInsert)
+     };
+     fetch('/api/mutate/delete/cert_assoc.php', requestOptions)
+     .then(response => response.json())
+     .then(data => {
+       if(data['status'] === 'ok'){
+         alert('Certification has been deleted.');
+         this.triggerCancelCertRmv();
+         this.fetchPageDetails();
+         }
+         else{
+           console.log(data)
+         }
+       });
+   },
+   triggerCancelCertRmv: function(){
+       this.certRemove = false;
+       this.certSelectedRmv = '';
    }
   }
 })
