@@ -29,10 +29,45 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../../index.html">Home</a></li>
+                        
                     </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Search/Edit
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="../common/search_mbr_cert.html?type=mbr">Members</a>
+                          <a class="dropdown-item" href="../common/search_mbr_cert.html?type=cert">Certifications</a>
+                          <a class="dropdown-item" href="../common/search_agency.html">Agencies</a>
+                          <a class="dropdown-item" href="../common/search_rank.html">Ranks</a>
+                          <a class="dropdown-item" href="../common/search_station.html">Stations</a>
+                         
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Add Entities
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="../mutate/add/mbr.html">Members</a>
+                          <a class="dropdown-item" href="../mutate/add/cert.html">Certifications</a>
+                          <a class="dropdown-item" href="../mutate/add/agency.html">Agencies</a>
+                          <a class="dropdown-item" href="../mutate/add/rank.html">Ranks</a>
+                          <a class="dropdown-item" href="../mutate/add/station.html">Stations</a>
+                          <a class="dropdown-item" href="../common/search_mbr_cert.html?type=mbr">Assign Cert to Member</a>
+                          <a class="dropdown-item" href="../common/search_mbr_cert.html?type=mbr">Assign Member to Station</a>
+                      </li>
+
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Reports
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="../reports/expired_cert.html">Expired Certifications</a>
+                          <a class="dropdown-item" href="../reports/names_by_station.html">Names By Station</a>
+                     
+                         
+                      </li>
                 </div>
             </div>
         </nav>
@@ -57,7 +92,7 @@
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
                 <!-- Portfolio Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Test Header</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Rank Record</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -71,7 +106,7 @@
     <br>
 
     <div class="container" id="rankDetails">
-      <h1 class="item-label">Certification Record</h1><br>
+    <br>
 
       <h2> Rank Details: </h2>
       Rank Name: {{rankDetails.rank_name}}
