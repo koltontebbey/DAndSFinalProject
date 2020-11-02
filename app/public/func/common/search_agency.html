@@ -149,7 +149,7 @@
                   <h3>OR pick from list:</h3>
 
 
-                  <select v-model='selection'>
+                  <select v-model='selection' class="form-control">
                     <option v-for="i in listContainer" v-bind:value="{id: i.agency_id}">
                       {{ i.agency_name }}
                     </option>

@@ -151,7 +151,7 @@
       </div>
       <div v-if="blockInsert">
               <h3>Select Certification:</h3>
-              <select v-model='certSelected'>
+              <select v-model='certSelected' class="form-control">
                 <option v-for="c in certList" v-bind:value="c.cert_id">
                   {{ c.cert_name }}
                 </option>
@@ -159,11 +159,11 @@
               <br>
               <label>
                 Date Obtained:
-                <input type="date" v-model="date_obt">
+                <input type="date" v-model="date_obt" class="form-control">
               </label>
               <label>
                 Expiry Date
-                <input type="date" v-model="exp_date">
+                <input type="date" v-model="exp_date" class="form-control">
               </label>
               <br>
               <button class="btn btn-primary" v-on:click="addCert">Add Certification</button>
@@ -172,7 +172,7 @@
 
       <div v-if="stationInsert">
               <h3>Select Station:</h3>
-              <select v-model='stationSelected'>
+              <select v-model='stationSelected' class="form-control">
                 <option v-for="s in stationList" v-bind:value="s.station_id">
                   {{ s.station_name }}
                 </option>
@@ -192,7 +192,7 @@
       </div>
       <div v-if="stationRemove">
         <h3>Select Station:</h3>
-        <select v-model='stationSelectedRmv'>
+        <select v-model='stationSelectedRmv' class="form-control">
           <option v-for="s in stationAssgn" v-bind:value="s.station_id">
             {{ s.station_name }}
           </option>
@@ -266,7 +266,7 @@
       </div>
       <div v-if="certRemove">
         <h3>Select Certification:</h3>
-        <select v-model='certSelectedRmv'>
+        <select v-model='certSelectedRmv' class="form-control">
           <option v-for="c in allCerts" v-bind:value="c.cert_id">
             {{ c.cert_name }}
           </option>

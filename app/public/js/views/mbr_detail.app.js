@@ -43,6 +43,12 @@ var app = new Vue({
        this.allCerts = data['certs'];
        // first item in API endpoint is details of the member
        this.mbrDetails = data['mbr_details'][0];
+       if(this.mbrDetails['is_active'] == '0'){
+         this.mbrDetails['is_active'] = "No";
+       }
+       else{
+         this.mbrDetails['is_active'] = "Yes";
+       }
        this.stationAssgn = data['stations'];
 
        // clears the lists for certs

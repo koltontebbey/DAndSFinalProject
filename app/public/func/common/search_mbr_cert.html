@@ -104,7 +104,7 @@
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
                 <!-- Portfolio Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Search Members & Certifications</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Search</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -165,7 +165,7 @@
                   <h3>OR pick from list:</h3>
 
                   <div v-if="toggleMbrCert">
-                    <select v-model='selection'>
+                    <select v-model='selection' class="form-control">
                       <option v-for="i in listContainer" v-bind:value="{id: i.person_id}">
                         {{ i.full_name }}
                       </option>
@@ -173,7 +173,7 @@
                   </div>
 
                   <div v-if="!toggleMbrCert">
-                    <select v-model='selection'>
+                    <select v-model='selection' class="form-control">
                       <option v-for="i in listContainer" v-bind:value="{id: i.cert_id}">
                         {{ i.cert_name }}
                       </option>
