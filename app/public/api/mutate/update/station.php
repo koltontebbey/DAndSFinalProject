@@ -6,7 +6,7 @@ require 'common.php';
 $db = DbConnection::getConnection();
 
 // Check for inputs
-$stationIdSet = isset($_POST['station_id'])
+$stationIdSet = isset($_POST['station_id']);
 $stationNameSet = isset($_POST['station_name']);
 $streetAddSet = isset($_POST['street_address']);
 $citySet = isset($_POST['city']);

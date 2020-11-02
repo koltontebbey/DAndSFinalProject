@@ -5,19 +5,21 @@ require 'common.php';
 // Get connection from helper
 $db = DbConnection::getConnection();
 
-// check if the personId is set
-if (isset($_POST['personId'])) {
+if (isset($_GET['stationId'])) {
   /*
-      SQL statement: Deletes the member.
+    SQL Statement: Gets a station by id
   */
-  $sql = "DELETE FROM Person WHERE person_id = ?";
+  $sql = 'SELECT *
+          FROM Station
+          WHERE Station.station_id = ?';
+
   $stmt = $db->prepare($sql);
-  $vars = [$_POST['personId']];
+  $vars = [$_GET['stationId']];
   $stmt->execute($vars);
 
-  $statusObj = array('status' => 'ok');
+  $results = $stmt->fetchAll();
 
-  $json = json_encode($statusObj, JSON_PRETTY_PRINT);
+  $json = json_encode($results, JSON_PRETTY_PRINT);
 
   // 200 OK
   http_response_code(200);

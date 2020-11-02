@@ -55,7 +55,7 @@ var app = new Vue({
                               .concat(this.certDetails['cert_name'], " certification?"));
       // on true call delete API
       if(response){
-        var apiPath = '/api/mutate/delete_cert.php';
+        var apiPath = '/api/mutate/delete/cert.php';
         var requestOptions = {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},

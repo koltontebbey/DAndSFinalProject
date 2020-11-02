@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="icon" href="favicon.ico">
+    <title>Big Brain, Big Books</title>
+  </head>
+
+  <!-- Navigation bar -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+      <div class="container">
+          <a class="navbar-brand js-scroll-trigger" href="index.html">Oconee County Fire Rescue</a>
+          <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              Menu
+              <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="func/detail_view/member_view.html">Member</a></li>
+                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="func/detail_view/certification_view.html">Certification</a></li>
+                  <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="func/data_entry/mbr_cert_insert.html">Update Certification</a></li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+
+<!-- Body -->
+
+  <body>
+
+    <div class="container" id="addAgency">
+      <h1 class="item-label">Add a member:</h1>
+
+      <form method='POST' v-on:submit.prevent="postAdd" id="addMemberForm">
+
+        <div class="form-group">
+          <label for="firstNameIn">First name</label>
+          <input type="text" class="form-control" id="firstNameIn" v-model.trim="usrInput.first_name" placeholder="Madlad">
+        </div>
+
+        <div class="form-group">
+          <label for="lastNameIn">Last name</label>
+          <input type="text" class="form-control" id="lastNameIn" v-model.trim="usrInput.last_name" placeholder="Jefferson">
+        </div>
+
+        <div class="form-group">
+          <label for="genderSel">Gender</label>
+          <select v-model='usrInput.gender' class="form-control" id = "genderSel">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="radioNumIn">Radio number</label>
+          <input type="text" class="form-control" id="radioNumIn" v-model.trim="usrInput.radio_number"  placeholder="1234">
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group col-md-6">
+            <label for="rankSel">Rank</label>
+            <select v-model='usrInput.rank_id' class="form-control" id = "rankSel">
+              <option v-for="r in rankList" v-bind:value="r.rank_id">
+                {{ r.rank_name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="activeSel">Active?</label>
+            <select v-model='usrInput.is_active' class="form-control" id = "activeSel">
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of birth</label>
+          <input type="date" id="dob" name="Date Of Birth" v-model='usrInput.date_of_birth'>
+        </div>
+
+        <div class="form-group">
+          <label for="startDate">Start date</label>
+          <input type="date" id="startDate" name="Start date" v-model='usrInput.start_date'>
+        </div>
+
+
+        <div class="form-group">
+          <label for="streetAddIn">Street address</label>
+          <input type="text" class="form-control" id="streetAddIn" v-model.trim="usrInput.street_address"  placeholder="1234 Main St.">
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group col-md-8">
+            <label for="cityIn">City</label>
+            <input type="text" class="form-control" id="cityIn" v-model.trim="usrInput.city" placeholder="Bloomington">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="zipIn">Zip code</label>
+            <input type="text" class="form-control" id="zipIn" v-model.trim="usrInput.zip" placeholder="47405">
+          </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="stateSel">State</label>
+              <select v-model='usrInput.state_abbr' class="form-control" id = "stateSel">
+                <option v-for="s in stateList" v-bind:value="s.state_abbr">
+                  {{ s.state_name }}
+                </option>
+              </select>
+          </div>
+
+
+            <div class="form-group col-md-6">
+              <label for="emailIn">Email</label>
+              <input type="text" class="form-control" id="emailIn" v-model.trim="usrInput.contact_email"  placeholder="abc@abc.com">
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group col-md-4">
+            <label for="homeNumberInput">Home phone</label>
+            <input type="text" class="form-control" id="homeNumberInput" v-model.trim="usrInput.home_phone" placeholder="4891561234">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="workNumberInput">Work phone</label>
+            <input type="text" class="form-control" id="workNumberInput" v-model.trim="usrInput.work_phone" placeholder="4891561234">
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="mobileNumberInput">Mobile Phone</label>
+            <input type="text" class="form-control" id="mobileNumberInput" v-model.trim="usrInput.mobile_phone" placeholder="4891561234">
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      </form>
+
+      <br>
+    </div>
+
+    <br>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/js/mutate/add/mbr.app.js"></script>
+
+  </body>
+
+</html>

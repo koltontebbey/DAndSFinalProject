@@ -27,19 +27,25 @@ $attempt = $firstNameSet && $lastNameSet && $genderSet && $radioNumSet && $rankI
                 $citySet && $stateAbbrSet && $zipSet && $contactEmailSet
                 && $homePhoneSet && $workPhoneSet && $mobilePhoneSet;
 
+
+
 if ($attempt) {
   $sql = "INSERT INTO Person (first_name, last_name, gender, radio_number, rank_id,
                               is_active, date_of_birth, start_date, street_address,
-                              city, state_abbr, zip, contact_email, home_phome,
+                              city, state_abbr, zip, contact_email, home_phone,
                               work_phone, mobile_phone)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ?, ?, ?)";
+          VALUES (?, ?, ?, ?, ?,
+                  ?, ?, ?, ?, ?,
+                  ?, ?, ?, ?, ?,
+                  ?)";
+
 
   $stmt = $db->prepare($sql);
   $vars = [$_POST['first_name'],
            $_POST['last_name'],
            $_POST['gender'],
-           $_POST['rank_id'],
            $_POST['radio_number'],
+           $_POST['rank_id'],
            $_POST['is_active'],
            $_POST['date_of_birth'],
            $_POST['start_date'],

@@ -26,7 +26,8 @@ if ($attempt) {
               zip = ?,
               email = ?,
               phone_num = ?
-          WHERE agency_id = ?;
+          WHERE agency_id = ?";
+
 
   $stmt = $db->prepare($sql);
   $vars = [$_POST['agency_name'],

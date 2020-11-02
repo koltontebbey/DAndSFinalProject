@@ -5,14 +5,14 @@ require 'common.php';
 // Get connection from helper
 $db = DbConnection::getConnection();
 
-// check if the personId is set
-if (isset($_POST['personId'])) {
+// check if the certId is set
+if (isset($_POST['stationId']) && isset($_POST['personId'])) {
   /*
-      SQL statement: Deletes the member.
+      SQL statement: deletes association between person and station
   */
-  $sql = "DELETE FROM Person WHERE person_id = ?";
+  $sql = "DELETE FROM Station_assoc WHERE station_id = ? AND person_id = ?";
   $stmt = $db->prepare($sql);
-  $vars = [$_POST['personId']];
+  $vars = [$_POST['station_id'], $_POST['person_id']];
   $stmt->execute($vars);
 
   $statusObj = array('status' => 'ok');

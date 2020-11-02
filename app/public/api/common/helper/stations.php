@@ -6,13 +6,11 @@ require 'common.php';
 $db = DbConnection::getConnection();
 
 /*
-  SQL Statement: Gets a list of certifications ordered by name
+  SQL Statement: Gets list of stations.
 */
-$sql = 'SELECT cert_id, cert_name
-FROM Certification
-ORDER BY cert_name';
+$querystr = 'SELECT station_id, station_name FROM Station';
 
-$stmt = $db->prepare($sql);
+$stmt = $db->prepare($querystr);
 $stmt->execute();
 
 $results = $stmt->fetchAll();
