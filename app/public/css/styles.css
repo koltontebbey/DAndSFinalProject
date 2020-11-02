@@ -159,12 +159,13 @@ sup {
 }
 
 a {
-  color: #1abc9c;
+  color: #fff;
   text-decoration: none;
   background-color: transparent;
+  list-style: none;
 }
 a:hover {
-  color: #117964;
+  color: #E8CEE4;
   text-decoration: underline;
 }
 
@@ -2987,6 +2988,8 @@ input[type=button].btn-block {
 .dropdown,
 .dropleft {
   position: relative;
+  list-style: none;
+
 }
 
 .dropdown-toggle {
@@ -3943,6 +3946,8 @@ input[type=button].btn-block {
   color: #495057;
   background-color: #fff;
   border-color: #dee2e6 #dee2e6 #fff;
+  list-style: none;
+
 }
 .nav-tabs .dropdown-menu {
   margin-top: -0.125rem;
@@ -10082,21 +10087,31 @@ h3 {
 }
 #mainNav .navbar-brand {
   color: #fff;
+  list-style: none;
+
 }
 #mainNav .navbar-nav {
   margin-top: 1rem;
 }
 #mainNav .navbar-nav li.nav-item a.nav-link {
   color: #fff;
+  list-style: none;
+
 }
 #mainNav .navbar-nav li.nav-item a.nav-link:hover {
   color: #E8CEE4;
+  list-style: none;
+
 }
 #mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
   color: #fff;
+  list-style: none;
+
 }
 #mainNav .navbar-nav li.nav-item a.nav-link.active {
   color: #1abc9c;
+  list-style: none;
+
 }
 #mainNav .navbar-toggler {
   font-size: 80%;
@@ -10119,10 +10134,12 @@ h3 {
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
     color: #fff;
     background: #AD2B1F;
+    list-style: none;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
     color: #fff;
     background: #AD2B1F;
+    list-style: none;
   }
 
   #mainNav.navbar-shrink {
@@ -10260,4 +10277,10 @@ form .row:first-child .floating-label-form-group {
 
 .copyright {
   background-color: #393D3F;
+}
+
+a .nav-link .dropdown-toggle #navbarDropdown {
+  color: white;
+  background-color: #fff;
+
 }
