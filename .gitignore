@@ -1,2 +1,4 @@
 .DS_Store
 *env*
+app/composer.lock
+app/vendor/*
