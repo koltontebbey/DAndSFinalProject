@@ -40,7 +40,6 @@ var app = new Vue({
      fetch(apiPath)
      .then(response => response.json())
      .then(data => {
-       this.allCerts = data['certs'];
        // first item in API endpoint is details of the member
        this.mbrDetails = data['mbr_details'][0];
        if(this.mbrDetails['is_active'] == '0'){
@@ -59,9 +58,11 @@ var app = new Vue({
        for(i = 0; i < data['certs'].length; i++){
          if(data['certs'][i]['status'] === 'Expired'){
            this.mbrExpiredCerts.push(data['certs'][i]);
+           this.allCerts.push(data['certs'][i]);
          }
          else{
            this.mbrValidCerts.push(data['certs'][i]);
+           this.allCerts.push(data['certs'][i]);
          }
        }
        // unhides expired table if there are any expired cert
@@ -141,26 +142,37 @@ var app = new Vue({
       else{
         dataToInsert['exp_date'] = this.exp_date;
       }
-      var requestOptions = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(dataToInsert)
-      };
-      fetch('/api/mutate/add/cert_assoc.php', requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        if(data['status'] === 'ok'){
-          alert('Certification has been added.');
-          this.blockInsert = false;
-          this.certSelected = '';
-          this.date_obt = '';
-          this.exp_date = '';
-          this.fetchPageDetails();
-          }
-          else{
-            console.log(data)
-          }
-        });
+      var found = false;
+      for(i = 0; i < this.allCerts.length; i++){
+        if(this.allCerts[i]['cert_id'] == this.certSelected){
+          found = true;
+        }
+      }
+      if(found){
+        alert("Member already has the certification.");
+      }
+      else{
+        var requestOptions = {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(dataToInsert)
+        };
+        fetch('/api/mutate/add/cert_assoc.php', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          if(data['status'] === 'ok'){
+            alert('Certification has been added.');
+            this.blockInsert = false;
+            this.certSelected = '';
+            this.date_obt = '';
+            this.exp_date = '';
+            this.fetchPageDetails();
+            }
+            else{
+              console.log(data)
+            }
+          });
+      }
      }
    },
    getStationList: function(){
@@ -185,28 +197,39 @@ var app = new Vue({
        alert("Select a station.");
      }
      else{
-       var dataToInsert = {
-         'person_id': this.mbrSelected,
-         'station_id': this.stationSelected
+       var found = false;
+       for(i = 0; i < this.stationAssgn.length; i++){
+         if(this.stationAssgn[i]['station_id'] == this.stationSelected){
+           found = true;
+         }
        }
-       var requestOptions = {
-         method: 'POST',
-         headers: {'Content-Type': 'application/json'},
-         body: JSON.stringify(dataToInsert)
-       };
-       fetch('/api/mutate/add/station_assoc.php', requestOptions)
-       .then(response => response.json())
-       .then(data => {
-         if(data['status'] === 'ok'){
-           alert('Station has been added.');
-           this.stationInsert = false;
-           this.stationSelected = '';
-           this.fetchPageDetails();
-           }
-           else{
-             console.log(data)
-           }
-         });
+       if(found){
+         alert("Member already in this station.");
+       }
+       else{
+         var dataToInsert = {
+           'person_id': this.mbrSelected,
+           'station_id': this.stationSelected
+         }
+         var requestOptions = {
+           method: 'POST',
+           headers: {'Content-Type': 'application/json'},
+           body: JSON.stringify(dataToInsert)
+         };
+         fetch('/api/mutate/add/station_assoc.php', requestOptions)
+         .then(response => response.json())
+         .then(data => {
+           if(data['status'] === 'ok'){
+             alert('Station has been added.');
+             this.stationInsert = false;
+             this.stationSelected = '';
+             this.fetchPageDetails();
+             }
+             else{
+               console.log(data)
+             }
+           });
+       }
      }
 
    },
