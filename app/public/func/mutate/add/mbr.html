@@ -118,20 +118,21 @@
 
 
                   <form method='POST' v-on:submit.prevent="postAdd" id="addMemberForm">
-
+                    * Required Field
+                    <br>
                     <div class="form-group">
-                      <label for="firstNameIn">First name</label>
-                      <input type="text" class="form-control" id="firstNameIn" v-model.trim="usrInput.first_name" placeholder="Madlad">
+                      <label for="firstNameIn">First name*</label>
+                      <input type="text" class="form-control" id="firstNameIn" v-model.trim="usrInput.first_name" placeholder="Madlad" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="lastNameIn">Last name</label>
-                      <input type="text" class="form-control" id="lastNameIn" v-model.trim="usrInput.last_name" placeholder="TebbJeff">
+                      <label for="lastNameIn">Last name*</label>
+                      <input type="text" class="form-control" id="lastNameIn" v-model.trim="usrInput.last_name" placeholder="TebbJeff" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="genderSel">Gender</label>
-                      <select v-model='usrInput.gender' class="form-control" id = "genderSel">
+                      <label for="genderSel">Gender*</label>
+                      <select v-model='usrInput.gender' class="form-control" id = "genderSel" required>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Other">Other</option>
@@ -139,15 +140,15 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="radioNumIn">Radio number</label>
-                      <input type="text" class="form-control" id="radioNumIn" v-model.trim="usrInput.radio_number"  placeholder="1234">
+                      <label for="radioNumIn">Radio number*</label>
+                      <input type="text" class="form-control" id="radioNumIn" v-model.trim="usrInput.radio_number"  placeholder="1234" required>
                     </div>
 
                     <div class="form-row">
 
                       <div class="form-group col-md-6">
-                        <label for="rankSel">Rank</label>
-                        <select v-model='usrInput.rank_id' class="form-control" id = "rankSel">
+                        <label for="rankSel">Rank*</label>
+                        <select v-model='usrInput.rank_id' class="form-control" id = "rankSel" required>
                           <option v-for="r in rankList" v-bind:value="r.rank_id">
                             {{ r.rank_name }}
                           </option>
@@ -155,8 +156,8 @@
                       </div>
 
                       <div class="form-group col-md-6">
-                        <label for="activeSel">Active?</label>
-                        <select v-model='usrInput.is_active' class="form-control" id = "activeSel">
+                        <label for="activeSel">Active?*</label>
+                        <select v-model='usrInput.is_active' class="form-control" id = "activeSel" required>
                           <option value="1">Yes</option>
                           <option value="0">No</option>
                         </select>
@@ -165,38 +166,38 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="dob">Date of birth</label>
-                      <input type="date" id="dob" name="Date Of Birth" v-model='usrInput.date_of_birth'>
+                      <label for="dob">Date of birth*</label>
+                      <input type="date" id="dob" name="Date Of Birth" v-model='usrInput.date_of_birth' required>
                     </div>
 
                     <div class="form-group">
-                      <label for="startDate">Start date</label>
-                      <input type="date" id="startDate" name="Start date" v-model='usrInput.start_date'>
+                      <label for="startDate">Start date*</label>
+                      <input type="date" id="startDate" name="Start date" v-model='usrInput.start_date' required>
                     </div>
 
 
                     <div class="form-group">
-                      <label for="streetAddIn">Street address</label>
-                      <input type="text" class="form-control" id="streetAddIn" v-model.trim="usrInput.street_address"  placeholder="1234 Main St.">
+                      <label for="streetAddIn">Street address*</label>
+                      <input type="text" class="form-control" id="streetAddIn" v-model.trim="usrInput.street_address"  placeholder="1234 Main St." required>
                     </div>
 
                     <div class="form-row">
 
                       <div class="form-group col-md-8">
-                        <label for="cityIn">City</label>
-                        <input type="text" class="form-control" id="cityIn" v-model.trim="usrInput.city" placeholder="Bloomington">
+                        <label for="cityIn">City*</label>
+                        <input type="text" class="form-control" id="cityIn" v-model.trim="usrInput.city" placeholder="Bloomington" required>
                       </div>
 
                       <div class="form-group col-md-4">
-                        <label for="zipIn">Zip code</label>
-                        <input type="text" class="form-control" id="zipIn" v-model.trim="usrInput.zip" placeholder="47405">
+                        <label for="zipIn">Zip code*</label>
+                        <input type="text" class="form-control" id="zipIn" v-model.trim="usrInput.zip" placeholder="47405" required>
                       </div>
 
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                          <label for="stateSel">State</label>
-                          <select v-model='usrInput.state_abbr' class="form-control" id = "stateSel">
+                          <label for="stateSel">State*</label>
+                          <select v-model='usrInput.state_abbr' class="form-control" id = "stateSel" required>
                             <option v-for="s in stateList" v-bind:value="s.state_abbr">
                               {{ s.state_name }}
                             </option>
@@ -205,8 +206,8 @@
 
 
                         <div class="form-group col-md-6">
-                          <label for="emailIn">Email</label>
-                          <input type="text" class="form-control" id="emailIn" v-model.trim="usrInput.contact_email"  placeholder="abc@abc.com">
+                          <label for="emailIn">Email*</label>
+                          <input type="text" class="form-control" id="emailIn" v-model.trim="usrInput.contact_email"  placeholder="abc@abc.com" required>
                         </div>
 
                     </div>
@@ -224,8 +225,8 @@
                       </div>
 
                       <div class="form-group col-md-4">
-                        <label for="mobileNumberInput">Mobile Phone</label>
-                        <input type="text" class="form-control" id="mobileNumberInput" v-model.trim="usrInput.mobile_phone" placeholder="4891561234">
+                        <label for="mobileNumberInput">Mobile Phone*</label>
+                        <input type="text" class="form-control" id="mobileNumberInput" v-model.trim="usrInput.mobile_phone" placeholder="4891561234" required>
                       </div>
 
                     </div>
