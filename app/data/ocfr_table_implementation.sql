@@ -76,15 +76,13 @@ CREATE TABLE Person(
   contact_email VARCHAR(50) NOT NULL,
   home_phone varchar(10),
   work_phone varchar(10),
-  mobile_phone varchar(10),
+  mobile_phone varchar(10) NOT NULL,
   foreign key (state_abbr) references States(state_abbr),
   foreign key (rank_id) references Ranks(rank_id)
 		ON DELETE SET NULL
 		ON UPDATE CASCADE,
   constraint gender_valid check (gender in ('Male', 'Female', 'Other')),
   constraint email_valid3 check (contact_email LIKE '%@%.%' AND contact_email NOT LIKE '@%' AND contact_email NOT LIKE '%@%@%'),
-  constraint chk_num_valid1 check (home_phone regexp '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
-  constraint chk_num_valid2 check (work_phone regexp '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
   constraint chk_num_valid3 check (mobile_phone regexp '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
 );
 
