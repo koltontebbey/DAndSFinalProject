@@ -120,7 +120,7 @@
                   <br>
                   <h3>Choose station:</h3>
                   <br>
-                  <select v-model='stationSelection' v-on:change="filterStation">
+                  <select v-model='stationSelection' v-on:change="filterStation" class="form-control">
                     <option value="all_stations">(All)</option>
                     <option v-for="s in uniqueStations">
                       {{s}}
