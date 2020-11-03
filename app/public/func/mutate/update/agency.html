@@ -117,40 +117,43 @@
 
 
                   <form method='POST' v-on:submit.prevent="postAdd" id="addAgencyForm">
+                    * Required Field
+                    <br>
+                    <br>
 
                     <div class="form-group">
-                      <label for="titleInput">Agency name</label>
-                      <input type="text" class="form-control" id="agencyNameIn" v-model.trim="usrInput.agency_name" placeholder="ABC Inc.">
+                      <label for="titleInput">Agency name*</label>
+                      <input type="text" class="form-control" id="agencyNameIn" v-model.trim="usrInput.agency_name" placeholder="ABC Inc." required>
                     </div>
 
                     <div class="form-group">
-                      <label for="streetAddIn">Street address</label>
-                      <input type="text" class="form-control" id="streetAddIn" v-model.trim="usrInput.street_address"  placeholder="1234 Main St.">
+                      <label for="streetAddIn">Street address*</label>
+                      <input type="text" class="form-control" id="streetAddIn" v-model.trim="usrInput.street_address"  placeholder="1234 Main St." required>
                     </div>
 
                     <div class="form-row">
 
                       <div class="form-group col-md-8">
-                        <label for="cityIn">City</label>
-                        <input type="text" class="form-control" id="cityIn" v-model.trim="usrInput.city" placeholder="Bloomington">
+                        <label for="cityIn">City*</label>
+                        <input type="text" class="form-control" id="cityIn" v-model.trim="usrInput.city" placeholder="Bloomington" required>
                       </div>
 
                       <div class="form-group col-md-4">
-                        <label for="zipIn">Zip code</label>
-                        <input type="text" class="form-control" id="zipIn" v-model.trim="usrInput.zip" placeholder="47405">
+                        <label for="zipIn">Zip code*</label>
+                        <input type="text" class="form-control" id="zipIn" v-model.trim="usrInput.zip" placeholder="47405" required>
                       </div>
 
                     </div>
 
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="emailIn">Email</label>
-                        <input type="text" class="form-control" id="emailIn" v-model.trim="usrInput.email"  placeholder="abc@abc.com">
+                        <label for="emailIn">Email*</label>
+                        <input type="text" class="form-control" id="emailIn" v-model.trim="usrInput.email"  placeholder="abc@abc.com" required>
                       </div>
 
                         <div class="form-group col-md-6">
-                          <label for="stateSel">State</label>
-                          <select v-model='usrInput.state_abbr' class="form-control" id = "stateSel">
+                          <label for="stateSel">State*</label>
+                          <select v-model='usrInput.state_abbr' class="form-control" id = "stateSel" required>
                             <option v-for="s in stateList" v-bind:value="s.state_abbr">
                               {{ s.state_name }}
                             </option>
@@ -162,8 +165,8 @@
                     <div class="form-row">
 
                       <div class="form-group col-md-6">
-                        <label for="numberInput">Phone number</label>
-                        <input type="text" class="form-control" id="numberInput" v-model.trim="usrInput.phone_num" placeholder="4891561234">
+                        <label for="numberInput">Phone number*</label>
+                        <input type="text" class="form-control" id="numberInput" v-model.trim="usrInput.phone_num" placeholder="4891561234" required>
                       </div>
 
                     </div>

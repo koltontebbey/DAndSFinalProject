@@ -20,12 +20,26 @@ $stateAbbrSet = isset($_POST['state_abbr']);
 $zipSet = isset($_POST['zip']);
 $contactEmailSet = isset($_POST['contact_email']);
 $homePhoneSet = isset($_POST['home_phone']);
+$homePhoneVal = '';
+if($homePhoneSet){
+  $homePhoneVal = $_POST['home_phone'];
+}
+else{
+  $homePhoneVal = "NULL";
+}
 $workPhoneSet = isset($_POST['work_phone']);
+$workPhoneVal = '';
+if($workPhoneSet){
+  $workPhoneVal = $_POST['work_phone'];
+}
+else{
+  $workPhoneVal = "NULL";
+}
 $mobilePhoneSet = isset($_POST['mobile_phone']);
 $attempt = $firstNameSet && $lastNameSet && $genderSet && $radioNumSet && $rankIdSet
                 && $isActiveSet && $dobSet && $startDateSet && $streetAddSet &&
                 $citySet && $stateAbbrSet && $zipSet && $contactEmailSet
-                && $homePhoneSet && $workPhoneSet && $mobilePhoneSet;
+                && $mobilePhoneSet;
 
 
 
@@ -54,8 +68,8 @@ if ($attempt) {
            $_POST['state_abbr'],
            $_POST['zip'],
            $_POST['contact_email'],
-           $_POST['home_phone'],
-           $_POST['work_phone'],
+           $homePhoneVal,
+           $workPhoneVal,
            $_POST['mobile_phone']
           ];
 

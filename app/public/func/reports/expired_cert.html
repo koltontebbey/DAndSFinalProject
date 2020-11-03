@@ -120,7 +120,7 @@
                   <br>
                   <h3>Choose certification:</h3>
                   <br>
-                  <select v-model='certSelection' v-on:change="filterCerts">
+                  <select v-model='certSelection' v-on:change="filterCerts" class="form-control">
                     <option value="all_certs">(All)</option>
                     <option v-for="c in uniqueCerts">
                       {{c}}

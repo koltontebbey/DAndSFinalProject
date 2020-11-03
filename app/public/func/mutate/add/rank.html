@@ -118,15 +118,16 @@
 
 
                   <form method='POST' v-on:submit.prevent="postAdd" id="addRankForm">
-
+                    * Required Field
+                    <br><br>
                     <div class="form-group">
-                      <label for="rankNameInput">Rank name</label>
-                      <input type="text" class="form-control" id="rankNameInput" v-model.trim="usrInput.rank_name" placeholder="King">
+                      <label for="rankNameInput">Rank name*</label>
+                      <input type="text" class="form-control" id="rankNameInput" v-model.trim="usrInput.rank_name" placeholder="King" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="rankDescriptionInput">Rank description</label>
-                      <input type="text" class="form-control" id="rankDescriptionInput" v-model.trim="usrInput.rank_description"  placeholder="Ocean Master">
+                      <label for="rankDescriptionInput">Rank description*</label>
+                      <input type="text" class="form-control" id="rankDescriptionInput" v-model.trim="usrInput.rank_description"  placeholder="Ocean Master" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
