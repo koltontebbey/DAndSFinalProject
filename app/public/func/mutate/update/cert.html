@@ -117,21 +117,24 @@
 
 
                   <form method='POST' v-on:submit.prevent="postAdd" id="updateCertForm">
+                    * Required Field
+                    <br>
+                    <br>
 
                     <div class="form-group">
-                      <label for="certNameIn">Certification name</label>
-                      <input type="text" class="form-control" id="certNameIn" v-model.trim="usrInput.cert_name" placeholder="Chest compressions i.e. CPR">
+                      <label for="certNameIn">Certification name*</label>
+                      <input type="text" class="form-control" id="certNameIn" v-model.trim="usrInput.cert_name" placeholder="Chest compressions i.e. CPR" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="expIn">Default expiry (yrs)</label>
-                      <input type="number" class="form-control" id="expIn" v-model.trim="usrInput.default_exp"  placeholder="3">
+                      <label for="expIn">Default expiry (yrs)*</label>
+                      <input type="number" class="form-control" id="expIn" v-model.trim="usrInput.default_exp"  placeholder="3" required>
                     </div>
 
 
                     <div class="form-group">
-                        <label for="stateSel">Certifying agency</label>
-                        <select v-model='usrInput.cert_agency_id' class="form-control" id = "stateSel">
+                        <label for="stateSel">Certifying agency*</label>
+                        <select v-model='usrInput.cert_agency_id' class="form-control" id = "stateSel" required>
                           <option v-for="a in agencyList" v-bind:value="a.agency_id">
                             {{ a.agency_name }}
                           </option>
