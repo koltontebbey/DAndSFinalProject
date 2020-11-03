@@ -105,6 +105,9 @@ var app = new Vue({
    addCertTrigger: function(){
      this.blockInsert = true;
      this.getCertList();
+     this.triggerCancelCertRmv();
+     this.triggerCancelStationRmv();
+     this.triggerCancelStation();
    },
    getCertList: function(){
      // api path
@@ -173,6 +176,9 @@ var app = new Vue({
    addStationTrigger: function(){
      this.stationInsert = true;
      this.getStationList();
+     this.triggerCancel();
+     this.triggerCancelCertRmv();
+     this.triggerCancelStationRmv();
    },
    addStation: function(){
      if(this.stationSelected === ''){
@@ -216,6 +222,9 @@ var app = new Vue({
    },
    removeStationTrigger: function(){
      this.stationRemove = true;
+     this.triggerCancel();
+     this.triggerCancelCertRmv();
+     this.triggerCancelStation();
    },
    removeStationGo: function(){
      var dataToInsert = {
@@ -246,6 +255,9 @@ var app = new Vue({
    },
    removeCertTrigger: function(){
      this.certRemove = true;
+     this.triggerCancel();
+     this.triggerCancelStation();
+     this.triggerCancelStationRmv();
    },
    removeCertGo: function(){
      var dataToInsert = {
